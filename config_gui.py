@@ -12,17 +12,22 @@ then open http://127.0.0.1:5000 in your browser.
 
 import os
 import re
+import sys
 import json
 import signal
+import platform
 import subprocess
 import requests
 from flask import Flask, request, jsonify, render_template_string
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(
+    sys.executable if getattr(sys, "frozen", False) else __file__
+))
 ENV_PATH = os.path.join(BASE_DIR, ".env")
 PID_PATH = os.path.join(BASE_DIR, "data", "bot.pid")
 RESULTS_XE = os.path.join(BASE_DIR, "data", "results.json")
 RESULTS_SPITO = os.path.join(BASE_DIR, "data", "results_spitogatos.json")
+PLATFORM = platform.system()   # 'Linux', 'Windows', 'Darwin'
 
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
@@ -244,19 +249,31 @@ def bot_status():
     return (pid is not None), ("subprocess" if pid else "none")
 
 
-def _subprocess_start():
+def _bot_cmd():
+    """Return the command list that runs the bot (works in dev and packaged mode)."""
+    if getattr(sys, "frozen", False):
+        # Running as a PyInstaller bundle — re-invoke ourselves with --bot flag.
+        return [sys.executable, "--bot"]
+    # Dev mode — use the venv Python to run main.py.
     py = os.path.join(BASE_DIR, "venv", "bin", "python")
-    py = py if os.path.exists(py) else "python3"
+    if not os.path.exists(py):
+        py = sys.executable
+    return [py, os.path.join(BASE_DIR, "main.py")]
+
+
+def _subprocess_start():
     logf = open(os.path.join(BASE_DIR, "data", "bot_stdout.log"), "a")
-    p = subprocess.Popen([py, os.path.join(BASE_DIR, "main.py")],
-                         cwd=BASE_DIR, stdout=logf, stderr=subprocess.STDOUT,
+    p = subprocess.Popen(_bot_cmd(), cwd=BASE_DIR,
+                         stdout=logf, stderr=subprocess.STDOUT,
                          stdin=subprocess.DEVNULL, start_new_session=True)
     with open(PID_PATH, "w") as f:
         f.write(str(p.pid))
+    _register_autostart()
     return p.pid
 
 
 def _subprocess_stop():
+    _unregister_autostart()
     pid = _subprocess_pid()
     if not pid:
         return
@@ -270,6 +287,72 @@ def _subprocess_stop():
     try:
         os.remove(PID_PATH)
     except OSError:
+        pass
+
+
+# ── OS-specific autostart (bot survives reboot) ──────────────────────────────
+
+_TASK_NAME = "HousefinderBot"
+_LAUNCHD_PLIST = os.path.expanduser(
+    "~/Library/LaunchAgents/com.housefinder.bot.plist")
+
+
+def _register_autostart():
+    """Register the bot to run at login (Windows / macOS). Linux uses systemd."""
+    try:
+        cmd = _bot_cmd()
+        if PLATFORM == "Windows":
+            import winreg
+            key = winreg.OpenKey(
+                winreg.HKEY_CURRENT_USER,
+                r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run",
+                0, winreg.KEY_SET_VALUE)
+            winreg.SetValueEx(key, _TASK_NAME, 0, winreg.REG_SZ,
+                              " ".join(f'"{c}"' for c in cmd))
+            winreg.CloseKey(key)
+        elif PLATFORM == "Darwin":
+            plist = f"""<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.housefinder.bot</string>
+  <key>ProgramArguments</key><array>
+    {"".join(f"<string>{c}</string>" for c in cmd)}
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>StandardOutPath</key>
+  <string>{os.path.join(BASE_DIR, "data", "bot_stdout.log")}</string>
+  <key>StandardErrorPath</key>
+  <string>{os.path.join(BASE_DIR, "data", "bot_stdout.log")}</string>
+</dict></plist>"""
+            os.makedirs(os.path.dirname(_LAUNCHD_PLIST), exist_ok=True)
+            with open(_LAUNCHD_PLIST, "w") as f:
+                f.write(plist)
+            subprocess.run(["launchctl", "load", "-w", _LAUNCHD_PLIST],
+                           capture_output=True)
+    except Exception:
+        pass   # non-fatal; bot still runs, just won't survive reboot
+
+
+def _unregister_autostart():
+    try:
+        if PLATFORM == "Windows":
+            import winreg
+            key = winreg.OpenKey(
+                winreg.HKEY_CURRENT_USER,
+                r"SOFTWARE\Microsoft\Windows\CurrentVersion\Run",
+                0, winreg.KEY_SET_VALUE)
+            winreg.DeleteValue(key, _TASK_NAME)
+            winreg.CloseKey(key)
+        elif PLATFORM == "Darwin":
+            subprocess.run(["launchctl", "unload", "-w", _LAUNCHD_PLIST],
+                           capture_output=True)
+            try:
+                os.remove(_LAUNCHD_PLIST)
+            except OSError:
+                pass
+    except Exception:
         pass
 
 
@@ -516,6 +599,60 @@ PAGE = r"""
   </div>
 
   <div class="card">
+    <h2>Help &amp; API Setup</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+      <div>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔑 ScraperAPI (for XE.gr)</p>
+        <p class="muted">Used to fetch XE.gr search results through a proxy so the bot isn't IP-blocked.</p>
+        <ol style="color:#c9d1d9;font-size:13px;padding-left:18px;margin:8px 0">
+          <li>Create a free account at <a href="https://www.scraperapi.com" target="_blank" style="color:var(--y)">scraperapi.com</a></li>
+          <li>Copy your API key from the dashboard</li>
+          <li>Paste it in the <b>ScraperAPI</b> field above</li>
+          <li>Free plan gives <b>1,000 credits/month</b> — enough for XE</li>
+        </ol>
+        <p class="muted">💡 Spitogatos uses a local headless browser — no ScraperAPI credits used.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">📧 Resend (for emails)</p>
+        <p class="muted">Sends the new-listing alert emails from your own domain.</p>
+        <ol style="color:#c9d1d9;font-size:13px;padding-left:18px;margin:8px 0">
+          <li>Create a free account at <a href="https://resend.com" target="_blank" style="color:var(--y)">resend.com</a></li>
+          <li>Add and verify your sending domain (DNS records)</li>
+          <li>Create an API key under <b>API Keys</b></li>
+          <li>Set <b>From address</b> to something like <code style="color:var(--y)">noreply@yourdomain.com</code></li>
+        </ol>
+        <p class="muted">💡 Free plan: 3,000 emails/month — plenty for property alerts.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">📍 Adding locations</p>
+        <p class="muted">Type an area name (in Greek or Latin letters) in either location search box. Results come live from each site's own autocomplete — the IDs are always correct. Pick <b>level 4</b> entries for broad municipality coverage.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔄 First-run browser setup</p>
+        <p class="muted">The Spitogatos scraper needs a local Chromium browser (~150 MB, one-time download) to bypass DataDome protection for free.</p>
+        <p class="muted">Run once in a terminal:</p>
+        <code style="display:block;background:#0d1117;padding:8px 10px;border-radius:6px;font-size:12px;color:var(--y);margin-top:4px">python -m playwright install chromium</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Legal &amp; Disclaimer</h2>
+    <p style="font-size:13px;color:#c9d1d9;line-height:1.6;margin:0">
+      Housefinder is an <b>unofficial</b> personal automation tool. It is not affiliated with,
+      endorsed by, or connected to XE.gr or Spitogatos.gr in any way.<br><br>
+      Web scraping may be subject to each website's <b>Terms of Service</b>. You are solely
+      responsible for how you use this software and for ensuring your usage complies with
+      applicable laws and the ToS of any website you access through it.<br><br>
+      This software is provided <b>"as is"</b>, without warranty of any kind. The authors
+      accept no liability for any damages or losses arising from its use. API keys, email
+      credentials, and any personal data are stored <b>locally on your machine only</b> and
+      are never transmitted to the authors or any third party beyond the configured services
+      (ScraperAPI, Resend).
+    </p>
+  </div>
+
+  <div class="card">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
       <h2 style="margin:0">Console</h2>
       <button id="tabActivity" class="btn-y" onclick="setLog('activity')">Activity</button>
@@ -530,6 +667,17 @@ PAGE = r"""
   </div>
 </main>
 <div id="toast" class="toast"></div>
+<footer style="text-align:center;padding:22px 12px 32px;color:var(--mut);font-size:12px;line-height:1.8">
+  <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
+       width="36" height="36" style="border-radius:8px;vertical-align:middle;margin-right:8px">
+  <b style="color:var(--txt)">Housefinder</b>
+  &nbsp;·&nbsp; Built with 🤍 by
+  <a href="https://github.com/stathis1998" target="_blank" style="color:var(--y);text-decoration:none">Stathis Stathopoulos</a>
+  &amp;
+  <a href="https://github.com/Stathkost" target="_blank" style="color:var(--y);text-decoration:none">Konstantinos Stathopoulos</a>
+  <br>
+  <span style="font-size:11px">Open source · Personal use only · No affiliation with XE.gr or Spitogatos.gr</span>
+</footer>
 
 <script>
 let cfg = {};

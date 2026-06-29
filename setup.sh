@@ -20,6 +20,13 @@ if [ ! -x "$PY" ]; then
 fi
 
 # 2) Dependencies --------------------------------------------------------------
+say "Installing Linux system dependencies for embedded browser (GTK WebKit2)"
+if command -v apt-get &>/dev/null; then
+  sudo apt-get install -y -qq \
+    python3-gi python3-gi-cairo gir1.2-gtk-3.0 gir1.2-webkit2-4.0 \
+    libwebkit2gtk-4.0-dev 2>/dev/null || true
+fi
+
 say "Installing Python dependencies"
 "$PY" -m pip install --upgrade pip >/dev/null
 "$PY" -m pip install -r requirements.txt
@@ -57,6 +64,7 @@ fi
 
 say "Done!"
 echo "Next:"
-echo "  1. Edit .env (or run the GUI):  $PY config_gui.py   ->  http://127.0.0.1:5000"
-echo "  2. Run the bot once:            $PY main.py"
-echo "  3. Or run ./setup.sh --service  to keep it running 24/7 (auto-start on boot)"
+echo "  1. Launch the desktop app:      $PY app.py"
+echo "     (or just the web GUI:        $PY config_gui.py  ->  http://127.0.0.1:5000)"
+echo "  2. Fill in your API keys, set filters, then click Start in the app."
+echo "  3. Or run ./setup.sh --service  to keep it running 24/7 (auto-start on boot)."

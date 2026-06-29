@@ -1,128 +1,126 @@
-# Housefinder
+<div align="center">
+  <img src="assets/logo.png" width="120" alt="Housefinder logo">
+  <h1>Housefinder</h1>
+  <p>A desktop property-alert bot for the Greek real-estate market.<br>
+  Monitors <strong>XE.gr</strong> and <strong>Spitogatos.gr</strong> and emails you the moment new listings match your filters.</p>
 
-A Python bot that monitors Greek real-estate sites (**XE.gr** and **Spitogatos.gr**)
-for new rental listings matching your filters and emails you when new ones appear.
+  [![Build Desktop App](https://github.com/Stathkost/Housefinder/actions/workflows/build.yml/badge.svg)](https://github.com/Stathkost/Housefinder/actions/workflows/build.yml)
+  [![Latest Build](https://img.shields.io/github/v/release/Stathkost/Housefinder?label=latest%20build&color=FFD43B)](https://github.com/Stathkost/Housefinder/releases/tag/latest-build)
+</div>
 
-Scraping is done through [ScraperAPI](https://www.scraperapi.com/). The bot runs in a
-loop, checking every 30 minutes, and shows a live status console (uptime, CPU/memory,
-trigger count) between runs.
+---
+
+> **Platform status — 29 June 2026**
+> | Platform | Status |
+> |----------|--------|
+> | 🐧 Linux (Ubuntu 22.04+) | ✅ **Tested and working** |
+> | 🪟 Windows 10/11 | 🔶 Build provided, community-tested |
+> | 🍎 macOS 13+ | 🔶 Build provided, community-tested |
+
+---
 
 ## How it works
 
-1. Reads your search filters and location IDs from `.env`.
-2. Calls XE and Spitogatos search APIs (proxied through ScraperAPI).
-3. Compares results against `data/results.json` / `data/results_spitogatos.json`
-   to find listings it hasn't seen before.
-4. Emails the new listings (HTML email via the Resend API) and logs to `data/logs/`.
+1. Every N minutes (default 30) the bot fetches all pages of XE.gr results through ScraperAPI and all pages of Spitogatos.gr results through a local headless browser (bypassing DataDome for free).
+2. New listings are compared against a local database (`data/results*.json`). Only truly new ones proceed.
+3. An HTML email with clickable property cards is sent to all recipients via the Resend API.
+4. Everything is configurable from a **built-in web GUI** — no hand-editing files needed.
 
-## Setup
+---
 
+## Quick start (packaged app)
+
+Download the latest build from the [Releases](https://github.com/Stathkost/Housefinder/releases/tag/latest-build) page.
+
+**Linux**
 ```bash
-# 1. Create and activate a virtual environment
-virtualenv venv            # or: python3 -m venv venv
-source venv/bin/activate
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 2b. Install the headless browser used to reach Spitogatos (see note below)
-python -m playwright install chromium
-
-# 3. Create your config from the template and fill it in
-cp example.env .env
+tar -xzf housefinder-linux.tar.gz
+cd Housefinder
+python -m playwright install chromium   # one-time, ~150 MB
+./Housefinder                           # opens the desktop app
 ```
 
-Edit `.env`:
+**Windows** — unzip `housefinder-windows.zip` and run `Housefinder.exe`.
+WebView2 (part of Microsoft Edge) is required — already present on Windows 10/11.
 
-- `RESEND_API_KEY` / `RESEND_FROM_EMAIL` — your [Resend](https://resend.com) API key
-  and a verified sender address (e.g. `noreply@yourdomain`). Emails are sent through
-  the Resend API. `RESEND_WEBHOOK_SECRET` is optional (only needed if you consume
-  Resend webhooks).
-- `RECIPIENTS_EMAILS` — JSON array of who gets notified.
-- `SCRAPPER_API_KEY` — your ScraperAPI key.
-- Search filters (price, size, bedrooms, floor) and location IDs — see the comments
-  in `example.env` for the area-ID lookup tables.
-
-## Run
-
+**macOS** — unzip `housefinder-macos.tar.gz`, then:
 ```bash
-source venv/bin/activate
-python main.py
+xattr -cr ./Housefinder   # remove quarantine flag
+./Housefinder
 ```
 
-`Ctrl+C` stops it.
+> The app opens a native embedded-browser window. Fill in your API keys, add locations, set filters, then click **Start** — the bot runs in the background and survives reboots.
 
-## Config GUI
+---
 
-Instead of hand-editing `.env`, you can manage everything from a small local web app:
-
-```bash
-source venv/bin/activate
-python config_gui.py
-```
-
-Then open <http://127.0.0.1:5000>. From there you can:
-
-- Edit the sender Gmail, app password and **recipient list**.
-- Edit all XE and Spitogatos filters (price, size, bedrooms/rooms, floor, sorting).
-- **Add/remove search areas** with a live search box that queries each site's own
-  autocomplete API, so the IDs are always the exact ones the sites expect (XE uses
-  Google place IDs, Spitogatos uses numeric area IDs).
-- **Save** writes back to `.env`.
-- **Fresh start** clears the "already seen" listings (`data/results*.json`) so the
-  next run re-emails every current match.
-- **Start / Stop** the bot.
-
-Saving updates `.env`; restart the bot (or use the Restart button) to apply changes.
-
-The GUI also has:
-
-- **Scheduler** — set how often the bot re-checks (`SEARCH_INTERVAL_MINUTES`).
-- **Console** — live tail of the bot's activity log and error log.
-- **Start / Stop / Restart** — controls the background service (see below).
-
-## Run as a service (auto-start on boot)
-
-The bot and GUI are installed as **systemd user services** so they keep running
-after a crash and start automatically when the PC boots (user *lingering* is
-enabled, so they run even before you log in).
+## Developer setup (from source)
 
 ```bash
-# status
-systemctl --user status housefinder-bot.service
-systemctl --user status housefinder-gui.service   # GUI at http://127.0.0.1:5000
-
-# start / stop / restart
-systemctl --user restart housefinder-bot.service
-
-# live logs
-journalctl --user -u housefinder-bot.service -f
+git clone https://github.com/Stathkost/Housefinder.git
+cd Housefinder
+./setup.sh                 # venv + deps + Chromium
+# OR  ./setup.sh --service  to install systemd auto-start (Linux)
 ```
 
-Unit files live in `deploy/` (copied to `~/.config/systemd/user/`). To reinstall
-on another machine: copy them there, then
-`systemctl --user daemon-reload && systemctl --user enable --now housefinder-bot.service`
-and `loginctl enable-linger $USER`.
+Then open the app:
+```bash
+./venv/bin/python app.py   # embedded browser window
+# or just the web GUI:
+./venv/bin/python config_gui.py   # then open http://127.0.0.1:5000
+```
 
-The bot is resilient: each cycle is wrapped in error handling, one site failing
-never stops the other, and any crash is logged to `data/logs/errors_*.txt` and
-retried (systemd also restarts the process if it ever exits).
+See [SETUP.md](SETUP.md) for detailed step-by-step instructions.
 
-## Site status (June 2026)
+---
 
-- **XE.gr** — working through the standard ScraperAPI plan. ✅
-- **Spitogatos.gr** — behind DataDome anti-bot protection, which blocks ScraperAPI's
-  datacenter proxies (HTTP 500/403). Instead of a paid ScraperAPI premium plan, the
-  bot reaches it for **free** with a local **headless browser** (Playwright/Chromium):
-  it visits the site to clear the DataDome challenge, then calls the search API from
-  inside the page. This works because the bot runs from a normal residential IP. ✅
+## API keys needed
 
-  Requires the one-time `python -m playwright install chromium` step. If the challenge
-  ever isn't cleared on a given run, it's logged as an error and that cycle is skipped;
-  the next cycle retries. The `SCRAPERAPI_PREMIUM` / `SCRAPERAPI_ULTRA_PREMIUM` toggles
-  still exist but are no longer needed for Spitogatos.
+| Service | Used for | Free tier |
+|---------|----------|-----------|
+| [ScraperAPI](https://www.scraperapi.com) | Fetching XE.gr through a proxy | 1,000 req/month |
+| [Resend](https://resend.com) | Sending email alerts | 3,000 emails/month |
 
-## Security note
+> **Spitogatos.gr** uses a local headless browser (Playwright/Chromium) to bypass DataDome anti-bot protection — **no paid plan needed**.
 
-Never commit real credentials. `.env` is gitignored; keep your Resend API key,
-webhook secret and ScraperAPI key only there. If a secret was ever pushed, rotate it.
+---
+
+## Building from source
+
+```bash
+pip install pyinstaller pywebview
+pyinstaller app.spec
+# output: dist/Housefinder/
+```
+
+Every push to `main` triggers an automated build for all three platforms via GitHub Actions — see the [Actions tab](https://github.com/Stathkost/Housefinder/actions).
+
+---
+
+## Auto-start after reboot
+
+| Platform | Mechanism |
+|----------|-----------|
+| Linux | `systemd --user` service (installed by `setup.sh --service`) |
+| Windows | Windows Registry Run key (set automatically when you click **Start** in the app) |
+| macOS | launchd plist in `~/Library/LaunchAgents/` (set automatically when you click **Start**) |
+
+Clicking **Stop** in the app removes the autostart entry on all platforms.
+
+---
+
+## Legal & disclaimer
+
+Housefinder is an **unofficial** personal automation tool. It is not affiliated with, endorsed by, or connected to XE.gr or Spitogatos.gr in any way.
+
+Web scraping may be subject to each website's Terms of Service. You are solely responsible for how you use this software. This software is provided **"as is"**, without warranty of any kind.
+
+---
+
+## Credits
+
+Built with ❤️ by:
+
+| | |
+|--|--|
+| **Stathis Stathopoulos** | [@stathis1998](https://github.com/stathis1998) |
+| **Konstantinos Stathopoulos** | [@Stathkost](https://github.com/Stathkost) |

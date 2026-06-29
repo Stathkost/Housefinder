@@ -19,13 +19,13 @@ template. Safe to re-run any time.
 
 ## 2. Add your keys
 
-Open the config GUI:
+Launch the desktop app:
 
 ```bash
-./venv/bin/python config_gui.py
+./venv/bin/python app.py
 ```
 
-Go to **http://127.0.0.1:5000** and fill in:
+This opens a native embedded-browser window. Fill in:
 
 | Field | Where to get it |
 |-------|-----------------|
