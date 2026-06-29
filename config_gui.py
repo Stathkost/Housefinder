@@ -607,41 +607,108 @@ PAGE = r"""
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/logo-192.png">
 <style>
-  :root { --y:#FFD43B; --bg:#0f1419; --card:#1b222b; --line:#2c3744; --txt:#e6edf3; --mut:#8b98a5; }
-  * { box-sizing:border-box; }
-  body { font-family:system-ui,Arial,sans-serif; margin:0; background:var(--bg); color:var(--txt); }
-  header { background:var(--card); border-bottom:1px solid var(--line); padding:14px 22px;
-           display:flex; align-items:center; gap:14px; position:sticky; top:0; z-index:5; }
-  header h1 { font-size:18px; margin:0; } header h1 span { color:var(--y); }
-  .pill { font-size:12px; padding:3px 10px; border-radius:20px; border:1px solid var(--line); color:var(--mut); }
-  .pill.on { color:#10b981; border-color:#10b981; } .pill.off { color:#ef4444; border-color:#ef4444; }
-  main { max-width:980px; margin:0 auto; padding:22px; }
-  .grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px; margin-bottom:18px; }
-  .card h2 { margin:0 0 14px; font-size:15px; color:var(--y); }
-  label { display:block; font-size:12px; color:var(--mut); margin:10px 0 4px; }
-  input, select { width:100%; padding:9px 10px; background:#0d1117; border:1px solid var(--line);
-                  border-radius:8px; color:var(--txt); font-size:14px; }
-  .row { display:flex; gap:10px; } .row > div { flex:1; }
-  button { cursor:pointer; border:none; border-radius:8px; padding:9px 16px; font-size:14px; font-weight:600; }
-  .btn-y { background:var(--y); color:#1b222b; } .btn-d { background:#2c3744; color:var(--txt); }
-  .btn-r { background:#ef4444; color:#fff; } .btn-g { background:#10b981; color:#fff; }
-  .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
-  .chip { background:#0d1117; border:1px solid var(--line); border-radius:20px; padding:5px 10px 5px 12px;
-          font-size:13px; display:flex; align-items:center; gap:8px; }
-  .chip b { color:var(--y); font-weight:600; } .chip small { color:var(--mut); }
-  .chip x { cursor:pointer; color:var(--mut); font-weight:700; } .chip x:hover { color:#ef4444; }
-  .suggest { position:relative; }
-  .results { position:absolute; left:0; right:0; top:100%; background:#0d1117; border:1px solid var(--line);
-             border-radius:8px; margin-top:4px; max-height:240px; overflow:auto; z-index:9; }
-  .results div { padding:8px 11px; cursor:pointer; font-size:13px; border-bottom:1px solid var(--line); }
-  .results div:hover { background:#161b22; } .results div small { color:var(--mut); display:block; }
-  .recip { display:flex; gap:8px; margin-bottom:6px; }
-  .actions { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-  .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:var(--y); color:#1b222b;
-           padding:11px 20px; border-radius:8px; font-weight:600; opacity:0; transition:.3s; pointer-events:none; }
-  .toast.show { opacity:1; }
-  .muted { color:var(--mut); font-size:12px; }
+  :root{--y:#FFD43B;--bg:#0f1419;--card:#1b222b;--line:#2c3744;--txt:#e6edf3;--mut:#8b98a5;
+        --g:#10b981;--r:#ef4444;}
+  *{box-sizing:border-box;transition:background .18s,border-color .18s,box-shadow .18s,opacity .18s;}
+  body{font-family:system-ui,Arial,sans-serif;margin:0;background:var(--bg);color:var(--txt);}
+
+  /* ── Header ── */
+  header{background:var(--card);border-bottom:1px solid var(--line);padding:12px 22px;
+         display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:5;
+         box-shadow:0 2px 18px rgba(0,0,0,.35);}
+  header h1{font-size:18px;margin:0;}header h1 span{color:var(--y);}
+
+  /* ── Status pills ── */
+  .pill{font-size:12px;padding:4px 11px;border-radius:20px;border:1px solid var(--line);
+        color:var(--mut);font-weight:500;letter-spacing:.3px;}
+  .pill.on{color:var(--g);border-color:var(--g);box-shadow:0 0 8px rgba(16,185,129,.25);}
+  .pill.off{color:var(--r);border-color:var(--r);}
+  @keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 6px rgba(16,185,129,0)}}
+  .pill.on{animation:pulse-green 2.4s infinite;}
+
+  /* ── Countdown widget ── */
+  #countdownPill{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:5px 14px;border-radius:20px;
+    border:1px solid var(--line);background:transparent;
+    font-size:13px;font-variant-numeric:tabular-nums;font-weight:700;
+    letter-spacing:.5px;color:var(--txt);
+    transition:border-color .3s,color .3s,background .3s;}
+  #countdownPill.urgent{border-color:var(--y);color:var(--y);background:rgba(255,212,59,.07);}
+  #countdownPill .cd-dot{width:7px;height:7px;border-radius:50%;background:var(--mut);flex-shrink:0;
+    transition:background .3s;}
+  #countdownPill.urgent .cd-dot{background:var(--y);}
+  @keyframes rotate{to{transform:rotate(360deg)}}
+  #countdownPill .cd-ring{display:none;width:14px;height:14px;border:2px solid var(--y);
+    border-top-color:transparent;border-radius:50%;animation:rotate .8s linear infinite;}
+
+  /* ── Buttons ── */
+  button{cursor:pointer;border:none;border-radius:8px;padding:9px 16px;font-size:14px;
+         font-weight:600;letter-spacing:.2px;position:relative;overflow:hidden;
+         transition:transform .12s,box-shadow .18s,filter .15s,background .15s;}
+  button:hover{filter:brightness(1.12);transform:translateY(-1px);
+               box-shadow:0 4px 16px rgba(0,0,0,.35);}
+  button:active{transform:translateY(0) scale(.97);filter:brightness(.95);}
+  button:disabled{opacity:.45;cursor:not-allowed;transform:none;filter:none;box-shadow:none;}
+
+  /* ripple */
+  button::after{content:'';position:absolute;border-radius:50%;width:5px;height:5px;
+    background:rgba(255,255,255,.35);transform:scale(0);opacity:0;
+    transition:transform .5s ease,opacity .5s ease;pointer-events:none;}
+  button.ripple::after{transform:scale(40);opacity:0;transition:0s;}
+
+  .btn-y{background:var(--y);color:#1b222b;box-shadow:0 2px 10px rgba(255,212,59,.25);}
+  .btn-y:hover{box-shadow:0 4px 20px rgba(255,212,59,.4);}
+  .btn-d{background:#2c3744;color:var(--txt);}
+  .btn-r{background:var(--r);color:#fff;box-shadow:0 2px 10px rgba(239,68,68,.2);}
+  .btn-r:hover{box-shadow:0 4px 20px rgba(239,68,68,.4);}
+  .btn-g{background:var(--g);color:#fff;box-shadow:0 2px 10px rgba(16,185,129,.2);}
+  .btn-g:hover{box-shadow:0 4px 20px rgba(16,185,129,.4);}
+
+  /* ⚡ Fetch now — extra pop */
+  #triggerBtn{background:linear-gradient(135deg,#2c3744,#3d4f60);border:1px solid var(--y);
+              color:var(--y);}
+  #triggerBtn:hover{background:linear-gradient(135deg,#3d4f60,#4e6476);
+                    box-shadow:0 4px 20px rgba(255,212,59,.3);}
+  @keyframes fetching-glow{0%,100%{box-shadow:0 0 8px rgba(255,212,59,.3)}
+                            50%{box-shadow:0 0 22px rgba(255,212,59,.7)}}
+  #triggerBtn.fetching{animation:fetching-glow 1.1s infinite;border-color:var(--y);}
+
+  /* ── Layout ── */
+  main{max-width:980px;margin:0 auto;padding:22px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;
+        margin-bottom:18px;transition:border-color .2s;}
+  .card:hover{border-color:#3d4f60;}
+  .card h2{margin:0 0 14px;font-size:15px;color:var(--y);}
+  label{display:block;font-size:12px;color:var(--mut);margin:10px 0 4px;}
+  input,select{width:100%;padding:9px 10px;background:#0d1117;border:1px solid var(--line);
+               border-radius:8px;color:var(--txt);font-size:14px;outline:none;}
+  input:focus,select:focus{border-color:var(--y);box-shadow:0 0 0 3px rgba(255,212,59,.12);}
+  .row{display:flex;gap:10px;}.row>div{flex:1;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+  .chip{background:#0d1117;border:1px solid var(--line);border-radius:20px;
+        padding:5px 10px 5px 12px;font-size:13px;display:flex;align-items:center;gap:8px;
+        transition:border-color .15s;}
+  .chip:hover{border-color:#4e6476;}
+  .chip b{color:var(--y);font-weight:600;}.chip small{color:var(--mut);}
+  .chip x{cursor:pointer;color:var(--mut);font-weight:700;transition:color .15s;}
+  .chip x:hover{color:var(--r);}
+  .suggest{position:relative;}
+  .results{position:absolute;left:0;right:0;top:100%;background:#0d1117;border:1px solid var(--line);
+           border-radius:8px;margin-top:4px;max-height:240px;overflow:auto;z-index:9;
+           box-shadow:0 8px 28px rgba(0,0,0,.4);}
+  .results div{padding:8px 11px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--line);
+               transition:background .12s;}
+  .results div:hover{background:#161b22;}.results div small{color:var(--mut);display:block;}
+  .recip{display:flex;gap:8px;margin-bottom:6px;}
+  .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(10px);
+         background:var(--y);color:#1b222b;padding:11px 22px;border-radius:10px;font-weight:700;
+         opacity:0;transition:opacity .25s,transform .25s;pointer-events:none;
+         box-shadow:0 6px 24px rgba(0,0,0,.4);}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .muted{color:var(--mut);font-size:12px;}
 </style>
 </head>
 <body>
@@ -651,9 +718,13 @@ PAGE = r"""
   <h1><span>Housefinder</span> Config</h1>
   <span id="botPill" class="pill">bot: …</span>
   <span id="bootPill" class="pill" title="Whether the bot auto-starts after reboot"></span>
-  <span id="countdownPill" class="pill" title="Time until next automatic fetch"></span>
+  <span id="countdownPill" title="Time until next automatic fetch">
+    <span class="cd-dot"></span>
+    <span class="cd-ring"></span>
+    <span id="cdText">—</span>
+  </span>
   <div style="flex:1"></div>
-  <button class="btn-d" id="triggerBtn" onclick="triggerNow()" title="Skip countdown and fetch now">⚡ Fetch now</button>
+  <button id="triggerBtn" onclick="triggerNow()" title="Skip countdown and fetch now">⚡ Fetch now</button>
   <button class="btn-g" onclick="botStart()">Start</button>
   <button class="btn-d" onclick="botRestart()">Restart</button>
   <button class="btn-r" onclick="botStop()">Stop</button>
@@ -952,19 +1023,34 @@ async function fetchCountdown(){
 
 function renderCountdown(){
   const pill=document.getElementById('countdownPill');
-  if(_cdSecs===null){ pill.textContent=''; pill.className='pill'; return; }
+  const dot=pill.querySelector('.cd-dot');
+  const ring=pill.querySelector('.cd-ring');
+  const txt=document.getElementById('cdText');
+  if(_cdSecs===null){ txt.textContent='—'; pill.classList.remove('urgent'); dot.style.display=''; ring.style.display='none'; return; }
   const m=Math.floor(_cdSecs/60), s=_cdSecs%60;
-  pill.textContent=`next: ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
-  pill.className='pill '+ (_cdSecs<120 ? 'on' : '');
+  txt.textContent=`next fetch  ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const urgent=_cdSecs<120;
+  pill.classList.toggle('urgent',urgent);
+  dot.style.display=urgent?'none':'';
+  ring.style.display=urgent?'':'none';
 }
+
+// ripple on all buttons
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('button');
+  if(!btn) return;
+  btn.classList.remove('ripple');
+  void btn.offsetWidth;
+  btn.classList.add('ripple');
+  setTimeout(()=>btn.classList.remove('ripple'),600);
+});
 
 async function triggerNow(){
   const btn=document.getElementById('triggerBtn');
-  btn.textContent='⏱ Running…'; btn.disabled=true;
+  btn.textContent='⏱ Running…'; btn.disabled=true; btn.classList.add('fetching');
   await fetch('/api/bot/trigger',{method:'POST'});
-  toast('Fetch triggered — running after current countdown tick');
-  // re-enable after 90s (typical cycle length) and refresh countdown
-  setTimeout(()=>{ btn.textContent='⚡ Fetch now'; btn.disabled=false; fetchCountdown(); }, 90000);
+  toast('Fetch triggered — running now');
+  setTimeout(()=>{ btn.textContent='⚡ Fetch now'; btn.disabled=false; btn.classList.remove('fetching'); fetchCountdown(); }, 90000);
   setTimeout(fetchCountdown, 5000);
 }
 
