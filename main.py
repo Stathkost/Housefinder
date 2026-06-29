@@ -76,37 +76,117 @@ def build_scraperapi_url(target_url):
 BROWSER_UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
               "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
 
+_JS_FETCH = """async (u) => {
+    const r = await fetch(u, {headers: {
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+    }});
+    if (!(r.headers.get("content-type") || "").includes("json")) return null;
+    return await r.json();
+}"""
 
-def fetch_spitogatos_json(url):
-    """Fetch a Spitogatos n_api URL through a local headless browser to clear the
-    DataDome anti-bot challenge -- no paid ScraperAPI proxy needed. Works because
-    the bot runs from a residential IP. Returns parsed JSON, or None if blocked."""
+
+def _browser_session(warmup_url, warmup_ms=4000):
+    """Open a headless Chromium context warmed up on warmup_url.
+    Returns (playwright, browser, page) — caller must close browser."""
     from playwright.sync_api import sync_playwright
-    with sync_playwright() as p:
-        browser = p.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-blink-features=AutomationControlled"],
-        )
+    pw = sync_playwright().start()
+    browser = pw.chromium.launch(
+        headless=True,
+        args=["--no-sandbox", "--disable-blink-features=AutomationControlled"],
+    )
+    ctx = browser.new_context(user_agent=BROWSER_UA, locale="en-US",
+                               viewport={"width": 1366, "height": 768})
+    page = ctx.new_page()
+    page.goto(warmup_url, wait_until="networkidle", timeout=60000)
+    page.wait_for_timeout(warmup_ms)
+    return pw, browser, page
+
+
+def fetch_xe_via_browser(base_params):
+    """Fetch ALL pages of XE results through a headless browser (free, no ScraperAPI).
+    Returns list of all result objects across pages, or raises on failure."""
+    pw, browser, page = _browser_session("https://www.xe.gr/property/")
+    try:
+        all_results, pg = [], 1
+        while True:
+            data = page.evaluate(_JS_FETCH, f"{base_params}&page={pg}")
+            if not data or "results" not in data:
+                raise RuntimeError(f"XE browser: no JSON on page {pg}")
+            page_results = data["results"]
+            all_results.extend(page_results)
+            total_pages = data.get("paging", {}).get("total_pages", 1)
+            event(f"XE page {pg}/{total_pages} — {len(page_results)} results (browser)")
+            if pg >= total_pages:
+                break
+            pg += 1
+            time.sleep(2)
+        return all_results
+    finally:
+        browser.close()
+        pw.stop()
+
+
+def fetch_xe_via_scraperapi(base_params):
+    """Fetch ALL pages of XE results through ScraperAPI (fallback).
+    Returns list of all result objects across pages, or raises on failure."""
+    all_results, pg = [], 1
+    while True:
+        url = build_scraperapi_url(f"{base_params}&page={pg}")
+        r = requests.get(url, timeout=90)
+        if not r.ok:
+            raise RuntimeError(f"ScraperAPI HTTP {r.status_code} on XE page {pg}")
+        data = r.json()
+        page_results = data.get("results", [])
+        all_results.extend(page_results)
+        total_pages = data.get("paging", {}).get("total_pages", 1)
+        event(f"XE page {pg}/{total_pages} — {len(page_results)} results (ScraperAPI)")
+        if pg >= total_pages:
+            break
+        pg += 1
+        time.sleep(3)
+    return all_results
+
+
+def fetch_spitogatos_via_browser(api_url):
+    """Fetch Spitogatos search results through a headless browser (free, no ScraperAPI).
+    Warms up on the home page + search page to build a convincing session.
+    Retries once before raising. Returns parsed JSON dict, or raises on failure."""
+    for attempt in range(1, 3):
+        pw, browser, page = _browser_session("https://www.spitogatos.gr/en", warmup_ms=4000)
         try:
-            ctx = browser.new_context(user_agent=BROWSER_UA, locale="en-US",
-                                      viewport={"width": 1366, "height": 768})
-            page = ctx.new_page()
-            # Visiting the site first lets DataDome set its clearance cookie.
-            page.goto("https://www.spitogatos.gr/en",
-                      wait_until="domcontentloaded", timeout=60000)
-            page.wait_for_timeout(4000)
-            # Fetch the API from inside the page: cookie + origin are attached for us.
-            return page.evaluate(
-                """async (u) => {
-                    const r = await fetch(u, {headers: {
-                        "Accept": "application/json",
-                        "X-Requested-With": "XMLHttpRequest"
-                    }});
-                    if (!(r.headers.get("content-type") || "").includes("json")) return null;
-                    return await r.json();
-                }""", url)
+            # visit the search results page too — deeper session = less suspicious
+            page.goto("https://www.spitogatos.gr/en/search/results",
+                      wait_until="domcontentloaded", timeout=30000)
+            page.wait_for_timeout(2000)
+            data = page.evaluate(_JS_FETCH, api_url)
+            if data and "data" in data:
+                return data
+            event(f"Spitogatos browser attempt {attempt}/2: challenge not cleared, retrying...",
+                  Fore.LIGHTYELLOW_EX)
+        except Exception as e:
+            if attempt == 2:
+                raise
+            event(f"Spitogatos browser attempt {attempt}/2 error: {e}, retrying...",
+                  Fore.LIGHTYELLOW_EX)
         finally:
             browser.close()
+            pw.stop()
+        time.sleep(5)
+    raise RuntimeError("Spitogatos browser: anti-bot challenge not cleared after 2 attempts")
+
+
+def fetch_spitogatos_via_scraperapi(api_url):
+    """Fetch Spitogatos search results through ScraperAPI (fallback, needs premium).
+    Returns parsed JSON dict, or raises on failure."""
+    r = requests.get(build_scraperapi_url(api_url), timeout=90)
+    if not r.ok:
+        raise RuntimeError(f"ScraperAPI HTTP {r.status_code} on Spitogatos"
+                           + (" (needs SCRAPERAPI_PREMIUM=true)" if r.status_code in (403, 500) else ""))
+    data = r.json()
+    if "data" not in data:
+        raise RuntimeError("ScraperAPI Spitogatos: unexpected response format")
+    return data
 
 
 def load_json_list(path):
@@ -304,31 +384,18 @@ def search_xe():
     for location_id in location_ids:
         base_params += f"&geo_place_ids[]={location_id}"
 
-    # Fetch all pages so we never miss listings beyond the first page.
+    # Try browser first (free); fall back to ScraperAPI if it fails.
     results = []
-    page = 1
-    while True:
-        paged_url = f"{base_params}&page={page}"
-        scrapper_url = build_scraperapi_url(paged_url)
-        request = requests.get(scrapper_url, timeout=90)
-
-        if not request.ok:
-            log_error("search_xe.fetch",
-                      message=f"XE request failed: HTTP {request.status_code} (page {page})")
-            break
-
-        data = request.json()
-        page_results = data.get("results", [])
-        results.extend(page_results)
-
-        paging = data.get("paging", {})
-        total_pages = paging.get("total_pages", 1)
-        event(f"XE page {page}/{total_pages} — {len(page_results)} results")
-
-        if page >= total_pages:
-            break
-        page += 1
-        time.sleep(3)  # be polite between pages
+    try:
+        results = fetch_xe_via_browser(base_params)
+    except Exception as e:
+        log_error("search_xe.browser", e)
+        event("XE: browser failed — falling back to ScraperAPI", Fore.LIGHTYELLOW_EX)
+        try:
+            results = fetch_xe_via_scraperapi(base_params)
+        except Exception as e2:
+            log_error("search_xe.scraperapi_fallback", e2)
+            return
 
     new_properties = []
     for result in results:
@@ -344,7 +411,7 @@ def search_xe():
         f.write(json.dumps(properties, indent=4, ensure_ascii=False))
 
     if len(new_properties) == 0:
-        event(f"XE: no new properties ({len(results)} checked across {page} page(s)).")
+        event(f"XE: no new properties ({len(results)} checked).")
     else:
         event(f"XE: {len(new_properties)} new properties — sending email...", Fore.LIGHTGREEN_EX)
         send_email("(XE) New Properties Found!", "\n\n".join([prop["url"] for prop in new_properties]))
@@ -388,19 +455,19 @@ def search_spitogatos():
     for location_id in location_ids:
         final_url += f"&areaIDs[]={location_id}"
 
-    # Spitogatos is behind DataDome, which blocks datacenter proxies. Instead of a
-    # paid ScraperAPI premium plan, fetch through a local headless browser from this
-    # machine's residential IP, which clears the challenge for free.
+    # Try browser first (free); fall back to ScraperAPI if it fails.
+    # Note: ScraperAPI fallback for Spitogatos requires SCRAPERAPI_PREMIUM=true.
+    data = None
     try:
-        data = fetch_spitogatos_json(final_url)
+        data = fetch_spitogatos_via_browser(final_url)
     except Exception as e:
-        log_error("search_spitogatos.browser_fetch", e)
-        return
-
-    if not data or "data" not in data:
-        log_error("search_spitogatos.fetch",
-                  message="Spitogatos returned no JSON (anti-bot challenge not cleared).")
-        return
+        log_error("search_spitogatos.browser", e)
+        event("Spitogatos: browser failed — falling back to ScraperAPI", Fore.LIGHTYELLOW_EX)
+        try:
+            data = fetch_spitogatos_via_scraperapi(final_url)
+        except Exception as e2:
+            log_error("search_spitogatos.scraperapi_fallback", e2)
+            return
 
     results = data["data"]
 
