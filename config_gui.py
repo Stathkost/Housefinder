@@ -470,6 +470,84 @@ def api_fresh_start():
     return jsonify({"ok": True})
 
 
+@app.route("/api/properties")
+def api_properties():
+    def _load(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            return []
+    return jsonify({"xe": _load(RESULTS_XE), "spito": _load(RESULTS_SPITO)})
+
+
+@app.route("/api/properties/resend", methods=["POST"])
+def api_properties_resend():
+    """Send a one-off email for the given list of property URLs."""
+    body = request.get_json(force=True)
+    urls = body.get("urls", [])
+    site = body.get("site", "")
+    if not urls:
+        return jsonify({"ok": False, "msg": "no URLs provided"})
+    try:
+        cfg = parse_env()
+        key  = cfg.get("RESEND_API_KEY", "")
+        frm  = cfg.get("RESEND_FROM_EMAIL", "")
+        rcpt = cfg.get("RECIPIENTS_EMAILS", [])
+        if not key or not frm or not rcpt:
+            return jsonify({"ok": False, "msg": "Resend not configured in .env"})
+        listings_html = "".join(
+            f'<a href="{u}" target="_blank" style="display:block;background:#fff;'
+            f'border:1px solid #e5e7eb;border-left:4px solid #FFD43B;border-radius:10px;'
+            f'padding:14px 18px;margin:10px 0;color:#1f2937;text-decoration:none;'
+            f'font-size:14px;word-break:break-all;">🏠&nbsp; {u}</a>'
+            for u in urls
+        )
+        html = f"""<!DOCTYPE html><html><body style="margin:0;padding:0;background:#f1f5f9;
+font-family:'Segoe UI',Arial,sans-serif;color:#1f2937;">
+<div style="max-width:600px;margin:0 auto;padding:24px;">
+<div style="background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06);">
+<div style="background:linear-gradient(135deg,#1b222b,#0f1419);padding:28px 24px;text-align:center;">
+<img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
+     width="80" height="80" style="border-radius:18px;margin-bottom:10px;">
+<h1 style="margin:0;color:#FFD43B;font-size:22px;">🏠 Property Finder</h1>
+<p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">Manually resent from the dashboard</p></div>
+<div style="padding:24px;"><h2 style="margin:0 0 16px;">Listings ({len(urls)})</h2>
+{listings_html}</div>
+<div style="background:#f8fafc;padding:16px 24px;text-align:center;border-top:1px solid #e5e7eb;">
+<p style="margin:0;color:#94a3b8;font-size:12px;">Designed &amp; developed by Stathis &amp; Konstantinos Stathopoulos</p>
+</div></div></div></body></html>"""
+        import requests as req
+        r = req.post("https://api.resend.com/emails",
+                     headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+                     json={"from": frm, "to": rcpt,
+                           "subject": f"[{site or 'Housefinder'}] {len(urls)} listing(s) resent",
+                           "html": html}, timeout=30)
+        if r.ok:
+            return jsonify({"ok": True, "id": r.json().get("id")})
+        return jsonify({"ok": False, "msg": r.text[:200]})
+    except Exception as e:
+        return jsonify({"ok": False, "msg": str(e)})
+
+
+@app.route("/api/properties/unsee", methods=["POST"])
+def api_properties_unsee():
+    """Remove specific property IDs from the seen database so the next cycle re-alerts."""
+    body = request.get_json(force=True)
+    ids  = set(str(i) for i in body.get("ids", []))
+    site = body.get("site", "xe")
+    path = RESULTS_XE if site == "xe" else RESULTS_SPITO
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            props = json.load(f)
+        props = [p for p in props if str(p.get("id")) not in ids]
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(props, f, ensure_ascii=False, indent=4)
+        return jsonify({"ok": True, "remaining": len(props)})
+    except Exception as e:
+        return jsonify({"ok": False, "msg": str(e)})
+
+
 PAGE = r"""
 <!DOCTYPE html>
 <html lang="en">
@@ -617,35 +695,35 @@ PAGE = r"""
     <h2>Help &amp; API Setup</h2>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <div>
-        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔑 ScraperAPI (for XE.gr)</p>
-        <p class="muted">Used to fetch XE.gr search results through a proxy so the bot isn't IP-blocked.</p>
-        <ol style="color:#c9d1d9;font-size:13px;padding-left:18px;margin:8px 0">
-          <li>Create a free account at <a href="https://www.scraperapi.com" target="_blank" style="color:var(--y)">scraperapi.com</a></li>
-          <li>Copy your API key from the dashboard</li>
-          <li>Paste it in the <b>ScraperAPI</b> field above</li>
-          <li>Free plan gives <b>1,000 credits/month</b> — enough for XE</li>
-        </ol>
-        <p class="muted">💡 Spitogatos uses a local headless browser — no ScraperAPI credits used.</p>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">🌐 How scraping works</p>
+        <p class="muted">Both XE.gr and Spitogatos.gr are fetched through a <b>local headless browser</b> running on this machine. Because it uses your home/residential IP, both sites let it through for free — no paid proxy needed.</p>
+        <p class="muted" style="margin-top:6px">ScraperAPI is only used as a <b>fallback</b> if the browser gets blocked on a given run. XE fallback works on the free plan; Spitogatos fallback needs the premium plan.</p>
       </div>
       <div>
-        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">📧 Resend (for emails)</p>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">📧 Resend (required — for emails)</p>
         <p class="muted">Sends the new-listing alert emails from your own domain.</p>
         <ol style="color:#c9d1d9;font-size:13px;padding-left:18px;margin:8px 0">
           <li>Create a free account at <a href="https://resend.com" target="_blank" style="color:var(--y)">resend.com</a></li>
           <li>Add and verify your sending domain (DNS records)</li>
           <li>Create an API key under <b>API Keys</b></li>
-          <li>Set <b>From address</b> to something like <code style="color:var(--y)">noreply@yourdomain.com</code></li>
+          <li>Set <b>From address</b> to e.g. <code style="color:var(--y)">noreply@yourdomain.com</code></li>
         </ol>
-        <p class="muted">💡 Free plan: 3,000 emails/month — plenty for property alerts.</p>
+        <p class="muted">💡 Free plan: 3,000 emails/month.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔑 ScraperAPI (optional — fallback only)</p>
+        <p class="muted">Only fires if the browser approach fails on a particular run. The free plan (1,000 req/month) is enough to cover XE fallbacks. You can leave this empty and the bot will still work — it simply skips ScraperAPI fallback.</p>
+        <ol style="color:#c9d1d9;font-size:13px;padding-left:18px;margin:8px 0">
+          <li>Create a free account at <a href="https://www.scraperapi.com" target="_blank" style="color:var(--y)">scraperapi.com</a></li>
+          <li>Copy your API key from the dashboard</li>
+          <li>Paste it in the <b>ScraperAPI</b> field above</li>
+        </ol>
       </div>
       <div>
         <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">📍 Adding locations</p>
-        <p class="muted">Type an area name (in Greek or Latin letters) in either location search box. Results come live from each site's own autocomplete — the IDs are always correct. Pick <b>level 4</b> entries for broad municipality coverage.</p>
-      </div>
-      <div>
-        <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔄 First-run browser setup</p>
-        <p class="muted">The Spitogatos scraper needs a local Chromium browser (~150 MB, one-time download) to bypass DataDome protection for free.</p>
-        <p class="muted">Run once in a terminal:</p>
+        <p class="muted">Type an area name (Greek or Latin) in either location search box. Results come live from each site's own autocomplete — IDs are always correct. Pick <b>level 4</b> entries for broad municipality coverage.</p>
+        <p style="margin:10px 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔄 First-run browser setup</p>
+        <p class="muted">One-time download (~150 MB):</p>
         <code style="display:block;background:#0d1117;padding:8px 10px;border-radius:6px;font-size:12px;color:var(--y);margin-top:4px">python -m playwright install chromium</code>
       </div>
     </div>
@@ -665,6 +743,34 @@ PAGE = r"""
       are never transmitted to the authors or any third party beyond the configured services
       (ScraperAPI, Resend).
     </p>
+  </div>
+
+  <div class="card">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+      <h2 style="margin:0">Found Properties</h2>
+      <button id="propTabXE" class="btn-y" onclick="setPropTab('xe')">XE.gr <span id="xeCount" style="font-size:11px"></span></button>
+      <button id="propTabSpito" class="btn-d" onclick="setPropTab('spito')">Spitogatos <span id="spitoCount" style="font-size:11px"></span></button>
+      <div style="flex:1"></div>
+      <button class="btn-d" onclick="selectAllProps()">Select all</button>
+      <button class="btn-y" onclick="resendSelected()">📧 Resend selected</button>
+      <button class="btn-r" onclick="unseeSelected()">👁 Mark as unseen</button>
+    </div>
+    <div id="propTable" style="overflow-x:auto;max-height:360px;overflow-y:auto">
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <thead style="position:sticky;top:0;background:var(--card);z-index:1">
+          <tr style="color:var(--mut);text-align:left;border-bottom:1px solid var(--line)">
+            <th style="padding:8px 6px;width:28px"></th>
+            <th style="padding:8px 6px">Address / Area</th>
+            <th style="padding:8px 6px">Price</th>
+            <th style="padding:8px 6px">Size</th>
+            <th style="padding:8px 6px">Rooms</th>
+            <th style="padding:8px 6px">Link</th>
+          </tr>
+        </thead>
+        <tbody id="propBody"><tr><td colspan="6" style="padding:16px;color:var(--mut);text-align:center">Loading…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="muted" style="margin:8px 0 0">"Mark as unseen" removes the listing from the local database — the bot will re-alert on it next cycle.</p>
   </div>
 
   <div class="card">
@@ -792,8 +898,77 @@ async function refreshLog(){
   }catch(e){}
 }
 
-wireSearch('xe'); wireSearch('spito'); load();
+// ── Properties tab ────────────────────────────────────────────────────────
+let propData={xe:[],spito:[]}, propTab='xe';
+
+function setPropTab(t){
+  propTab=t;
+  document.getElementById('propTabXE').className   = t==='xe'?'btn-y':'btn-d';
+  document.getElementById('propTabSpito').className = t==='spito'?'btn-y':'btn-d';
+  renderPropTable();
+}
+
+async function loadProps(){
+  try{
+    const d=await(await fetch('/api/properties')).json();
+    propData=d;
+    document.getElementById('xeCount').textContent   = `(${d.xe.length})`;
+    document.getElementById('spitoCount').textContent = `(${d.spito.length})`;
+    renderPropTable();
+  }catch(e){}
+}
+
+function renderPropTable(){
+  const rows = propTab==='xe' ? propData.xe : propData.spito;
+  const body = document.getElementById('propBody');
+  if(!rows||!rows.length){body.innerHTML='<tr><td colspan="6" style="padding:16px;color:var(--mut);text-align:center">No listings saved yet.</td></tr>';return;}
+  body.innerHTML = rows.map(r=>{
+    const isXE = propTab==='xe';
+    const id   = String(r.id||'');
+    const addr = isXE ? (r.address||r.title||'—') : (r.geography||'—');
+    const price= isXE ? (r.price||'—') : (r.price ? '€'+r.price : '—');
+    const size = isXE ? (r.size_with_square_meter||'—') : (r.sq_meters ? r.sq_meters+' m²' : '—');
+    const rooms= isXE ? (r.bedrooms||'—') : (r.rooms||'—');
+    const url  = isXE ? (r.url||'#') : `https://www.spitogatos.gr/en/property/21${id}`;
+    return `<tr style="border-bottom:1px solid var(--line)">
+      <td style="padding:7px 6px"><input type="checkbox" class="prop-cb" data-id="${id}" data-url="${url}" style="width:auto"></td>
+      <td style="padding:7px 6px;max-width:220px;word-break:break-word">${addr}</td>
+      <td style="padding:7px 6px;white-space:nowrap">${price}</td>
+      <td style="padding:7px 6px;white-space:nowrap">${size}</td>
+      <td style="padding:7px 6px">${rooms}</td>
+      <td style="padding:7px 6px"><a href="${url}" target="_blank" style="color:var(--y);font-size:12px">Open ↗</a></td>
+    </tr>`;
+  }).join('');
+}
+
+function _selectedProps(){
+  return [...document.querySelectorAll('.prop-cb:checked')].map(el=>({id:el.dataset.id,url:el.dataset.url}));
+}
+function selectAllProps(){
+  const cbs=document.querySelectorAll('.prop-cb');
+  const allChecked=[...cbs].every(c=>c.checked);
+  cbs.forEach(c=>c.checked=!allChecked);
+}
+async function resendSelected(){
+  const sel=_selectedProps(); if(!sel.length){toast('Select at least one listing');return;}
+  const r=await(await fetch('/api/properties/resend',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({urls:sel.map(s=>s.url),site:propTab==='xe'?'XE.gr':'Spitogatos'})})).json();
+  toast(r.ok?`Email sent ✓`:'Failed: '+r.msg);
+}
+async function unseeSelected(){
+  const sel=_selectedProps(); if(!sel.length){toast('Select at least one listing');return;}
+  if(!confirm(`Remove ${sel.length} listing(s) from seen history? The bot will re-alert on them next cycle.`)) return;
+  const r=await(await fetch('/api/properties/unsee',{method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({ids:sel.map(s=>s.id),site:propTab})})).json();
+  if(r.ok){ toast(`Removed — ${r.remaining} remaining`); loadProps(); }
+  else toast('Failed: '+r.msg);
+}
+
+wireSearch('xe'); wireSearch('spito'); load(); loadProps();
 setInterval(botStatus,5000); setInterval(refreshLog,3000); refreshLog();
+setInterval(loadProps,60000);
 </script>
 </body>
 </html>
