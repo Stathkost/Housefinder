@@ -511,6 +511,43 @@ def api_logs_clear():
         return jsonify({"ok": False, "msg": str(e)})
 
 
+def chromium_ready():
+    """Return True if the Playwright Chromium binary exists on disk."""
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            return os.path.exists(p.chromium.executable_path)
+    except Exception:
+        return False
+
+
+@app.route("/api/setup/browser-status")
+def api_browser_status():
+    return jsonify({"ready": chromium_ready()})
+
+
+@app.route("/api/setup/browser-install", methods=["POST"])
+def api_browser_install():
+    """Install the Playwright Chromium browser (streams log lines as plain text)."""
+    from flask import Response, stream_with_context
+    from playwright._impl._driver import compute_driver_executable
+
+    def run():
+        node, cli = compute_driver_executable()
+        cmd = [node, cli, "install", "chromium"]
+        try:
+            proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                    stderr=subprocess.STDOUT, text=True)
+            for line in proc.stdout:
+                yield line
+            proc.wait()
+            yield f"\n__EXIT__{proc.returncode}__\n"
+        except Exception as e:
+            yield f"ERROR: {e}\n__EXIT__1__\n"
+
+    return Response(stream_with_context(run()), mimetype="text/plain")
+
+
 @app.route("/api/fresh-start", methods=["POST"])
 def api_fresh_start():
     for p in (RESULTS_XE, RESULTS_SPITO):
@@ -730,6 +767,25 @@ PAGE = r"""
   <button class="btn-r" onclick="botStop()">Stop</button>
 </header>
 <main>
+  <!-- browser setup banner — hidden once Chromium is installed -->
+  <div id="browserBanner" style="display:none;background:linear-gradient(135deg,#1b222b,#0f1419);
+       border:1px solid var(--y);border-radius:12px;padding:18px 22px;margin-bottom:18px;
+       display:flex;align-items:flex-start;gap:16px">
+    <div style="font-size:28px;flex-shrink:0">⚙️</div>
+    <div style="flex:1">
+      <p style="margin:0 0 6px;font-weight:700;color:var(--y);font-size:15px">Browser setup required</p>
+      <p class="muted" style="margin:0 0 12px">The bot uses a local Chromium browser to fetch listings for free.
+        It needs a one-time download (~150 MB). Click Install and wait — this only happens once.</p>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <button class="btn-y" id="installBrowserBtn" onclick="installBrowser()">⬇ Install browser</button>
+        <span id="installStatus" class="muted"></span>
+      </div>
+      <pre id="installLog" style="display:none;margin:10px 0 0;background:#0d1117;border:1px solid var(--line);
+           border-radius:8px;padding:10px;font-size:11px;max-height:160px;overflow-y:auto;
+           color:#c9d1d9;white-space:pre-wrap"></pre>
+    </div>
+  </div>
+
   <div class="card">
     <h2>Email (Resend)</h2>
     <div class="row">
@@ -844,9 +900,8 @@ PAGE = r"""
       <div>
         <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:var(--y)">📍 Adding locations</p>
         <p class="muted">Type an area name (Greek or Latin) in either location search box. Results come live from each site's own autocomplete — IDs are always correct. Pick <b>level 4</b> entries for broad municipality coverage.</p>
-        <p style="margin:10px 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔄 First-run browser setup</p>
-        <p class="muted">One-time download (~150 MB):</p>
-        <code style="display:block;background:#0d1117;padding:8px 10px;border-radius:6px;font-size:12px;color:var(--y);margin-top:4px">python -m playwright install chromium</code>
+        <p style="margin:10px 0 8px;font-size:13px;font-weight:600;color:var(--y)">🔄 Browser setup</p>
+        <p class="muted">The bot uses a local Chromium browser (~150 MB, one-time download) to fetch listings for free. If it's not installed yet, a banner appears at the top of this page with an Install button — no terminal needed.</p>
       </div>
     </div>
   </div>
@@ -1141,7 +1196,49 @@ async function unseeSelected(){
   else toast('Failed: '+r.msg);
 }
 
-wireSearch('xe'); wireSearch('spito'); load(); loadProps(); fetchCountdown();
+async function checkBrowser(){
+  try{
+    const d=await(await fetch('/api/setup/browser-status')).json();
+    document.getElementById('browserBanner').style.display=d.ready?'none':'flex';
+  }catch(e){}
+}
+
+async function installBrowser(){
+  const btn=document.getElementById('installBrowserBtn');
+  const status=document.getElementById('installStatus');
+  const log=document.getElementById('installLog');
+  btn.disabled=true; btn.textContent='⏳ Installing…';
+  status.textContent='Downloading Chromium (~150 MB) — please wait…';
+  log.style.display='block'; log.textContent='';
+  try{
+    const resp=await fetch('/api/setup/browser-install',{method:'POST'});
+    const reader=resp.body.getReader(); const dec=new TextDecoder();
+    let done=false, exitCode=0;
+    while(!done){
+      const {value,done:d}=await reader.read(); done=d;
+      if(value){
+        const chunk=dec.decode(value);
+        const m=chunk.match(/__EXIT__(\d+)__/);
+        if(m){ exitCode=parseInt(m[1]); }
+        log.textContent+=chunk.replace(/__EXIT__\d+__/g,'');
+        log.scrollTop=log.scrollHeight;
+      }
+    }
+    if(exitCode===0){
+      status.textContent='✅ Browser installed!';
+      btn.textContent='✅ Done';
+      setTimeout(()=>{ document.getElementById('browserBanner').style.display='none'; },2000);
+      toast('Chromium installed — bot is ready');
+    } else {
+      status.textContent='❌ Install failed — check the log above';
+      btn.disabled=false; btn.textContent='↻ Retry';
+    }
+  }catch(e){
+    status.textContent='Error: '+e; btn.disabled=false; btn.textContent='↻ Retry';
+  }
+}
+
+wireSearch('xe'); wireSearch('spito'); load(); loadProps(); fetchCountdown(); checkBrowser();
 setInterval(botStatus,5000); setInterval(refreshLog,3000); refreshLog();
 setInterval(loadProps,60000); setInterval(fetchCountdown,30000);
 </script>
