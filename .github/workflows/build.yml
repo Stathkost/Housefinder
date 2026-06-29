@@ -70,6 +70,11 @@ jobs:
           pip install -r requirements.txt
           pip install pywebview pyinstaller
 
+      # Windows needs Pillow so PyInstaller can auto-convert logo.png → .ico
+      - name: Install Pillow (Windows icon conversion)
+        if: matrix.name == 'windows'
+        run: pip install Pillow
+
       # ── Playwright browser (Chromium for Spitogatos DataDome bypass) ──────
       - name: Install Playwright Chromium
         run: python -m playwright install chromium
