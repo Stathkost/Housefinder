@@ -3871,5 +3871,1507 @@
                 "value": "1968"
             }
         ]
+    },
+    {
+        "id": "e052362a-e7e6-4e83-bb60-d550c0b68bde",
+        "www_id": "20260412174830854",
+        "internal_id": "20260412174830854",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Egaleo (Anagennisi)",
+        "geo_lat": 38.00072249999999,
+        "geo_lng": 23.683018,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": null,
+        "display_golden_border": false,
+        "owner_logo": null,
+        "price_per_unit_area": "9",
+        "account_id": null,
+        "company_title": null,
+        "is_commercial": false,
+        "sponsored": false,
+        "title": "Detached House 62 sq.m.",
+        "title_abbreviation": "Detached House 62 sq.m.",
+        "price": "€550",
+        "distinctive_offer": "550 €",
+        "price_with_abbreviation": "550 €",
+        "price_per_square_meter": "€9/sq.m.",
+        "size_with_square_meter": "62 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Egaleo (Anagennisi) Detached House 62 sq.m. furnished",
+        "image_gallery": [],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/e052362a-e7e6-4e83-bb60-d550c0b68bde/egaleo-anagennisi-550-62",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": null,
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            }
+        ]
+    },
+    {
+        "id": "ac8c71b3-06cc-4e4f-a470-495275318908",
+        "www_id": "20260322085316938",
+        "internal_id": "20260322085316938",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Athens (Nirvana)",
+        "geo_lat": 38.003705,
+        "geo_lng": 23.7228062,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor",
+            "Elevated Ground Floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "1972",
+        "display_golden_border": true,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/f5d2cce4-4b2b-4843-a66d-f7b354e5365e/f5d2cce4-4b2b-4843-a66d-f7b354e5365e-source.jpg",
+        "price_per_unit_area": "11",
+        "account_id": "472d7f63-d5c0-43ad-9695-46653cd26630",
+        "company_title": "PRO Realtor",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 50 sq.m.",
+        "title_abbreviation": "Apartment 50 sq.m.",
+        "price": "€550",
+        "distinctive_offer": "550 €",
+        "price_with_abbreviation": "550 €",
+        "price_per_square_meter": "€11/sq.m.",
+        "size_with_square_meter": "50 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Athens (Nirvana) Apartment 50 sq.m. renovated",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/2945a0fb-83b3-4321-8582-ae6baa490394/2945a0fb-83b3-4321-8582-ae6baa490394-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/2945a0fb-83b3-4321-8582-ae6baa490394/2945a0fb-83b3-4321-8582-ae6baa490394-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/fb8dfa3e-6e07-4d7e-85f0-3386356829a6/fb8dfa3e-6e07-4d7e-85f0-3386356829a6-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/fb8dfa3e-6e07-4d7e-85f0-3386356829a6/fb8dfa3e-6e07-4d7e-85f0-3386356829a6-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/cfe7b011-795c-47f7-88f1-ea10bae759e2/cfe7b011-795c-47f7-88f1-ea10bae759e2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/cfe7b011-795c-47f7-88f1-ea10bae759e2/cfe7b011-795c-47f7-88f1-ea10bae759e2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/c4314db0-c6b5-45ee-9cd7-5c8623d97839/c4314db0-c6b5-45ee-9cd7-5c8623d97839-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/c4314db0-c6b5-45ee-9cd7-5c8623d97839/c4314db0-c6b5-45ee-9cd7-5c8623d97839-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/dc298b7a-b23e-4b84-a937-c30c22f068d4/dc298b7a-b23e-4b84-a937-c30c22f068d4-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/dc298b7a-b23e-4b84-a937-c30c22f068d4/dc298b7a-b23e-4b84-a937-c30c22f068d4-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/cb209ae7-2de5-4598-a428-c55d7b4b33b6/cb209ae7-2de5-4598-a428-c55d7b4b33b6-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/cb209ae7-2de5-4598-a428-c55d7b4b33b6/cb209ae7-2de5-4598-a428-c55d7b4b33b6-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/88f5384b-61a9-4634-bad4-11badbba977f/88f5384b-61a9-4634-bad4-11badbba977f-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/88f5384b-61a9-4634-bad4-11badbba977f/88f5384b-61a9-4634-bad4-11badbba977f-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/2c28f4d5-82f2-4cd6-813e-6817e067b0b2/2c28f4d5-82f2-4cd6-813e-6817e067b0b2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/2c28f4d5-82f2-4cd6-813e-6817e067b0b2/2c28f4d5-82f2-4cd6-813e-6817e067b0b2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/ff810ee9-388b-4b64-842a-5cdbdac22e44/ff810ee9-388b-4b64-842a-5cdbdac22e44-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/ff810ee9-388b-4b64-842a-5cdbdac22e44/ff810ee9-388b-4b64-842a-5cdbdac22e44-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/083d6cff-5f52-4a98-b1bf-e5529a247601/083d6cff-5f52-4a98-b1bf-e5529a247601-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/083d6cff-5f52-4a98-b1bf-e5529a247601/083d6cff-5f52-4a98-b1bf-e5529a247601-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/e06617d8-41b4-495c-b2ba-d1ff372ab559/e06617d8-41b4-495c-b2ba-d1ff372ab559-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/e06617d8-41b4-495c-b2ba-d1ff372ab559/e06617d8-41b4-495c-b2ba-d1ff372ab559-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/b0685666-1edc-4132-93b0-89b76ddab322/b0685666-1edc-4132-93b0-89b76ddab322-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/b0685666-1edc-4132-93b0-89b76ddab322/b0685666-1edc-4132-93b0-89b76ddab322-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/de553d41-e52a-4262-9d9a-2b5e237e0033/de553d41-e52a-4262-9d9a-2b5e237e0033-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/de553d41-e52a-4262-9d9a-2b5e237e0033/de553d41-e52a-4262-9d9a-2b5e237e0033-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/c0bce7ea-1005-475b-9fcc-e657fa4bf253/c0bce7ea-1005-475b-9fcc-e657fa4bf253-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/c0bce7ea-1005-475b-9fcc-e657fa4bf253/c0bce7ea-1005-475b-9fcc-e657fa4bf253-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/21d6126f-b6de-4422-b2fd-c1518daa63bb/21d6126f-b6de-4422-b2fd-c1518daa63bb-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/21d6126f-b6de-4422-b2fd-c1518daa63bb/21d6126f-b6de-4422-b2fd-c1518daa63bb-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/8c69b335-a1e4-4f39-8d10-ac62e55ee3bc/8c69b335-a1e4-4f39-8d10-ac62e55ee3bc-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/8c69b335-a1e4-4f39-8d10-ac62e55ee3bc/8c69b335-a1e4-4f39-8d10-ac62e55ee3bc-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/98280bd9-dbe2-4f30-8d79-971e418b9cd4/98280bd9-dbe2-4f30-8d79-971e418b9cd4-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/98280bd9-dbe2-4f30-8d79-971e418b9cd4/98280bd9-dbe2-4f30-8d79-971e418b9cd4-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/0d59ebef-510f-4f4e-a182-6bb3b4433f56/0d59ebef-510f-4f4e-a182-6bb3b4433f56-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/0d59ebef-510f-4f4e-a182-6bb3b4433f56/0d59ebef-510f-4f4e-a182-6bb3b4433f56-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/dbe4eb54-fc8f-42a7-85c4-4850d651b910/dbe4eb54-fc8f-42a7-85c4-4850d651b910-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/dbe4eb54-fc8f-42a7-85c4-4850d651b910/dbe4eb54-fc8f-42a7-85c4-4850d651b910-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/ae963c50-81bd-475d-acbf-072c11eeb145/ae963c50-81bd-475d-acbf-072c11eeb145-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/ae963c50-81bd-475d-acbf-072c11eeb145/ae963c50-81bd-475d-acbf-072c11eeb145-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/19ad17e8-f723-4b9a-b5c4-4887a53ae9f7/19ad17e8-f723-4b9a-b5c4-4887a53ae9f7-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/19ad17e8-f723-4b9a-b5c4-4887a53ae9f7/19ad17e8-f723-4b9a-b5c4-4887a53ae9f7-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/602753c1-bf0c-421f-b666-95cfe4691220/602753c1-bf0c-421f-b666-95cfe4691220-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/602753c1-bf0c-421f-b666-95cfe4691220/602753c1-bf0c-421f-b666-95cfe4691220-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/d71bee66-1c00-4120-8f37-7d05657eda82/d71bee66-1c00-4120-8f37-7d05657eda82-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/d71bee66-1c00-4120-8f37-7d05657eda82/d71bee66-1c00-4120-8f37-7d05657eda82-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/492d84ac-74ed-4843-8121-8bc0258b1e97/492d84ac-74ed-4843-8121-8bc0258b1e97-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/492d84ac-74ed-4843-8121-8bc0258b1e97/492d84ac-74ed-4843-8121-8bc0258b1e97-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/1d5c9264-1f2b-4a32-8210-4bd58264b0ab/1d5c9264-1f2b-4a32-8210-4bd58264b0ab-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/1d5c9264-1f2b-4a32-8210-4bd58264b0ab/1d5c9264-1f2b-4a32-8210-4bd58264b0ab-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/07e891ee-a35f-48d5-837b-c3f4467131ee/07e891ee-a35f-48d5-837b-c3f4467131ee-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/07e891ee-a35f-48d5-837b-c3f4467131ee/07e891ee-a35f-48d5-837b-c3f4467131ee-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/994057aa-da48-46ec-9721-a9fa0b04875a/994057aa-da48-46ec-9721-a9fa0b04875a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/994057aa-da48-46ec-9721-a9fa0b04875a/994057aa-da48-46ec-9721-a9fa0b04875a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/18433cb3-cfb5-4d91-ba4b-7b59e25ae9b9/18433cb3-cfb5-4d91-ba4b-7b59e25ae9b9-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/18433cb3-cfb5-4d91-ba4b-7b59e25ae9b9/18433cb3-cfb5-4d91-ba4b-7b59e25ae9b9-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/22/d35d0b87-0f72-4317-824e-776e83d0ac24/d35d0b87-0f72-4317-824e-776e83d0ac24-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/22/d35d0b87-0f72-4317-824e-776e83d0ac24/d35d0b87-0f72-4317-824e-776e83d0ac24-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/ac8c71b3-06cc-4e4f-a470-495275318908/athens-nirvana-550-50",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/f5d2cce4-4b2b-4843-a66d-f7b354e5365e/f5d2cce4-4b2b-4843-a66d-f7b354e5365e-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "1972"
+            }
+        ]
+    },
+    {
+        "id": "a706d29a-bbf4-4f41-9e6c-84fbf5a15fef",
+        "www_id": "20260320152401553",
+        "internal_id": "20260320152401553",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Athens (Nirvana)",
+        "geo_lat": 38.0048884,
+        "geo_lng": 23.7219605,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": null,
+        "construction_year": null,
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2025/07/15/e352bf1c-af97-4d1d-b47b-81bc4e2b0ec0/e352bf1c-af97-4d1d-b47b-81bc4e2b0ec0-source.png",
+        "price_per_unit_area": "8",
+        "account_id": "b78649b1-e7b0-4cc7-813a-46d5a4e0f6c4",
+        "company_title": "Best Properties",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 60 sq.m.",
+        "title_abbreviation": "Apartment 60 sq.m.",
+        "price": "€500",
+        "distinctive_offer": "500 €",
+        "price_with_abbreviation": "500 €",
+        "price_per_square_meter": "€8/sq.m.",
+        "size_with_square_meter": "60 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Athens (Nirvana) Apartment 60 sq.m. renovated",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/48ced932-552a-4a66-a081-af38dabe7778/48ced932-552a-4a66-a081-af38dabe7778-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/48ced932-552a-4a66-a081-af38dabe7778/48ced932-552a-4a66-a081-af38dabe7778-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/b042e0a8-4fc1-4a62-bee3-87251bc25246/b042e0a8-4fc1-4a62-bee3-87251bc25246-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/b042e0a8-4fc1-4a62-bee3-87251bc25246/b042e0a8-4fc1-4a62-bee3-87251bc25246-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/94fd70b0-2185-43ec-b571-531b6eee5799/94fd70b0-2185-43ec-b571-531b6eee5799-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/94fd70b0-2185-43ec-b571-531b6eee5799/94fd70b0-2185-43ec-b571-531b6eee5799-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/c87910a0-479b-4936-857a-90a1f9bad09a/c87910a0-479b-4936-857a-90a1f9bad09a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/c87910a0-479b-4936-857a-90a1f9bad09a/c87910a0-479b-4936-857a-90a1f9bad09a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/2d8a72cd-e450-4580-96b5-ebd52e779beb/2d8a72cd-e450-4580-96b5-ebd52e779beb-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/2d8a72cd-e450-4580-96b5-ebd52e779beb/2d8a72cd-e450-4580-96b5-ebd52e779beb-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/0b6c11a0-df4b-4ca8-aa6c-8ac865c58a3f/0b6c11a0-df4b-4ca8-aa6c-8ac865c58a3f-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/0b6c11a0-df4b-4ca8-aa6c-8ac865c58a3f/0b6c11a0-df4b-4ca8-aa6c-8ac865c58a3f-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/44518213-0c4d-4507-85f9-e9699af35589/44518213-0c4d-4507-85f9-e9699af35589-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/44518213-0c4d-4507-85f9-e9699af35589/44518213-0c4d-4507-85f9-e9699af35589-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/5516551b-2198-4106-9f55-0424d46a10a1/5516551b-2198-4106-9f55-0424d46a10a1-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/5516551b-2198-4106-9f55-0424d46a10a1/5516551b-2198-4106-9f55-0424d46a10a1-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/03/20/679c741c-b518-454f-8d4f-3c416e586d61/679c741c-b518-454f-8d4f-3c416e586d61-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/03/20/679c741c-b518-454f-8d4f-3c416e586d61/679c741c-b518-454f-8d4f-3c416e586d61-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/a706d29a-bbf4-4f41-9e6c-84fbf5a15fef/athens-nirvana-500-60",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2025/07/15/e352bf1c-af97-4d1d-b47b-81bc4e2b0ec0/e352bf1c-af97-4d1d-b47b-81bc4e2b0ec0-source.png?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            }
+        ]
+    },
+    {
+        "id": "eaf4f0d3-d0bc-49b6-a564-81ffddc91783",
+        "www_id": "20260129192848392",
+        "internal_id": "20260129192848392",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Athens (Agios Panteleimonas)",
+        "geo_lat": 37.9987192,
+        "geo_lng": 23.7240258,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "1980",
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2025/12/18/c395de47-237f-4f4c-805b-3aff122987f7/c395de47-237f-4f4c-805b-3aff122987f7-source.png",
+        "price_per_unit_area": "11",
+        "account_id": "78f1bb27-c77b-45bb-88ef-1f17bb0dfffb",
+        "company_title": "Easy2",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 50 sq.m.",
+        "title_abbreviation": "Apartment 50 sq.m.",
+        "price": "€550",
+        "distinctive_offer": "550 €",
+        "price_with_abbreviation": "550 €",
+        "price_per_square_meter": "€11/sq.m.",
+        "size_with_square_meter": "50 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Athens (Agios Panteleimonas) Apartment 50 sq.m. furnished renovated",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/8b4f81b8-b870-4838-b6ab-39fa42ef52ac/8b4f81b8-b870-4838-b6ab-39fa42ef52ac-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/8b4f81b8-b870-4838-b6ab-39fa42ef52ac/8b4f81b8-b870-4838-b6ab-39fa42ef52ac-source.png?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/24b0f071-c0a5-4f7c-a1a6-cd91259a6555/24b0f071-c0a5-4f7c-a1a6-cd91259a6555-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/24b0f071-c0a5-4f7c-a1a6-cd91259a6555/24b0f071-c0a5-4f7c-a1a6-cd91259a6555-source.png?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/0bad261b-9b07-434a-9fe7-0bb87930697c/0bad261b-9b07-434a-9fe7-0bb87930697c-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/0bad261b-9b07-434a-9fe7-0bb87930697c/0bad261b-9b07-434a-9fe7-0bb87930697c-source.png?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/582c0118-decd-4d89-adfd-83075bb571c9/582c0118-decd-4d89-adfd-83075bb571c9-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/582c0118-decd-4d89-adfd-83075bb571c9/582c0118-decd-4d89-adfd-83075bb571c9-source.png?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/2069b6f3-a968-49c4-9ce5-7c4156fcf432/2069b6f3-a968-49c4-9ce5-7c4156fcf432-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/2069b6f3-a968-49c4-9ce5-7c4156fcf432/2069b6f3-a968-49c4-9ce5-7c4156fcf432-source.png?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/4cbf33f9-2aa3-4284-949d-79570e26547b/4cbf33f9-2aa3-4284-949d-79570e26547b-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/4cbf33f9-2aa3-4284-949d-79570e26547b/4cbf33f9-2aa3-4284-949d-79570e26547b-source.png?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/eaf4f0d3-d0bc-49b6-a564-81ffddc91783/athens-agios-panteleimonas-550-50",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2025/12/18/c395de47-237f-4f4c-805b-3aff122987f7/c395de47-237f-4f4c-805b-3aff122987f7-source.png?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "1980"
+            }
+        ]
+    },
+    {
+        "id": "0ec4d5a0-2195-4231-9234-91a9681ead03",
+        "www_id": "20260129125659591",
+        "internal_id": "20260129125659591",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Ilion (Polyteknon)",
+        "geo_lat": 38.0243116,
+        "geo_lng": 23.7016814,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": null,
+        "display_golden_border": false,
+        "owner_logo": null,
+        "price_per_unit_area": "9",
+        "account_id": null,
+        "company_title": null,
+        "is_commercial": false,
+        "sponsored": false,
+        "title": "Apartment 50 sq.m.",
+        "title_abbreviation": "Apartment 50 sq.m.",
+        "price": "€440",
+        "distinctive_offer": "440 €",
+        "price_with_abbreviation": "440 €",
+        "price_per_square_meter": "€9/sq.m.",
+        "size_with_square_meter": "50 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Ilion (Polyteknon) Apartment 50 sq.m.",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/4819b93f-8b8c-428f-8fce-2690d4fa370c/4819b93f-8b8c-428f-8fce-2690d4fa370c-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/4819b93f-8b8c-428f-8fce-2690d4fa370c/4819b93f-8b8c-428f-8fce-2690d4fa370c-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/6d91d7b4-899b-475d-917f-27e9dc366527/6d91d7b4-899b-475d-917f-27e9dc366527-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/6d91d7b4-899b-475d-917f-27e9dc366527/6d91d7b4-899b-475d-917f-27e9dc366527-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/47b85870-ba1d-4c9f-b06d-1c0c89e0b50b/47b85870-ba1d-4c9f-b06d-1c0c89e0b50b-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/47b85870-ba1d-4c9f-b06d-1c0c89e0b50b/47b85870-ba1d-4c9f-b06d-1c0c89e0b50b-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/adab749a-6b87-49ab-9200-bcfd2cd32be8/adab749a-6b87-49ab-9200-bcfd2cd32be8-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/adab749a-6b87-49ab-9200-bcfd2cd32be8/adab749a-6b87-49ab-9200-bcfd2cd32be8-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/99be5b9e-700f-46eb-a8f5-6151ef64e42d/99be5b9e-700f-46eb-a8f5-6151ef64e42d-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/99be5b9e-700f-46eb-a8f5-6151ef64e42d/99be5b9e-700f-46eb-a8f5-6151ef64e42d-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/41826cba-c268-4df3-aee6-eddeaf38be0b/41826cba-c268-4df3-aee6-eddeaf38be0b-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/41826cba-c268-4df3-aee6-eddeaf38be0b/41826cba-c268-4df3-aee6-eddeaf38be0b-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/6049062c-8c1a-4aac-a91e-6adcc2797b6a/6049062c-8c1a-4aac-a91e-6adcc2797b6a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/6049062c-8c1a-4aac-a91e-6adcc2797b6a/6049062c-8c1a-4aac-a91e-6adcc2797b6a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/7c513b5f-b0f8-4d58-9798-6c7c0997c3b9/7c513b5f-b0f8-4d58-9798-6c7c0997c3b9-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/7c513b5f-b0f8-4d58-9798-6c7c0997c3b9/7c513b5f-b0f8-4d58-9798-6c7c0997c3b9-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/7df2e2d0-6a6e-4a8f-9260-b9d32ec4991c/7df2e2d0-6a6e-4a8f-9260-b9d32ec4991c-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/7df2e2d0-6a6e-4a8f-9260-b9d32ec4991c/7df2e2d0-6a6e-4a8f-9260-b9d32ec4991c-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/01/29/47f8a950-899f-4ade-9a44-1b0d8b75c2ea/47f8a950-899f-4ade-9a44-1b0d8b75c2ea-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/01/29/47f8a950-899f-4ade-9a44-1b0d8b75c2ea/47f8a950-899f-4ade-9a44-1b0d8b75c2ea-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/0ec4d5a0-2195-4231-9234-91a9681ead03/ilion-polyteknon-440-50",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": null,
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            }
+        ]
+    },
+    {
+        "id": "0f241000-2e88-484e-ab5c-39f87161357b",
+        "www_id": "20251006063356531",
+        "internal_id": "20251006063356531",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Heraklion (Tria Asteria)",
+        "geo_lat": 38.05306119999999,
+        "geo_lng": 23.7601129,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "2010",
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/7e213888-ff69-4d62-85ce-90c5e90e886b/7e213888-ff69-4d62-85ce-90c5e90e886b-source.jpg",
+        "price_per_unit_area": "14",
+        "account_id": "b0829c42-946b-4084-84ff-0c6feec72cc8",
+        "company_title": "Pro EXx Real Estate",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Maisonette 40 sq.m.",
+        "title_abbreviation": "Maisonette 40 sq.m.",
+        "price": "€550",
+        "distinctive_offer": "550 €",
+        "price_with_abbreviation": "550 €",
+        "price_per_square_meter": "€14/sq.m.",
+        "size_with_square_meter": "40 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Heraklion (Tria Asteria) Maisonette 40 sq.m. furnished",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/8f002baf-65e5-453e-9869-657c936cab92/8f002baf-65e5-453e-9869-657c936cab92-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/8f002baf-65e5-453e-9869-657c936cab92/8f002baf-65e5-453e-9869-657c936cab92-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/a2946986-34bd-442d-ae82-62aca385117e/a2946986-34bd-442d-ae82-62aca385117e-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/a2946986-34bd-442d-ae82-62aca385117e/a2946986-34bd-442d-ae82-62aca385117e-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/fde12b8d-9c5c-47e7-954d-6274488c4fc2/fde12b8d-9c5c-47e7-954d-6274488c4fc2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/fde12b8d-9c5c-47e7-954d-6274488c4fc2/fde12b8d-9c5c-47e7-954d-6274488c4fc2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/8b3e4807-d689-4b70-a0d4-3044034118e9/8b3e4807-d689-4b70-a0d4-3044034118e9-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/8b3e4807-d689-4b70-a0d4-3044034118e9/8b3e4807-d689-4b70-a0d4-3044034118e9-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/0f7e144d-d376-48b5-acd1-8da8f5aba264/0f7e144d-d376-48b5-acd1-8da8f5aba264-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/0f7e144d-d376-48b5-acd1-8da8f5aba264/0f7e144d-d376-48b5-acd1-8da8f5aba264-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/6304edd2-e5ba-4bd7-a196-05b91b40ed45/6304edd2-e5ba-4bd7-a196-05b91b40ed45-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/6304edd2-e5ba-4bd7-a196-05b91b40ed45/6304edd2-e5ba-4bd7-a196-05b91b40ed45-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/514b8167-81df-4ade-977d-e423ebc18d5b/514b8167-81df-4ade-977d-e423ebc18d5b-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/514b8167-81df-4ade-977d-e423ebc18d5b/514b8167-81df-4ade-977d-e423ebc18d5b-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/10/06/59c2ca3a-be38-4bdf-86f0-d78922ddd15f/59c2ca3a-be38-4bdf-86f0-d78922ddd15f-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/10/06/59c2ca3a-be38-4bdf-86f0-d78922ddd15f/59c2ca3a-be38-4bdf-86f0-d78922ddd15f-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/0f241000-2e88-484e-ab5c-39f87161357b/heraklion-tria-asteria-550-40",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/7e213888-ff69-4d62-85ce-90c5e90e886b/7e213888-ff69-4d62-85ce-90c5e90e886b-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "2010"
+            }
+        ]
+    },
+    {
+        "id": "65217c1c-ccbe-4e18-8bac-ccb868fd15e2",
+        "www_id": "20250905150007337",
+        "internal_id": "20250905150007337",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Egaleo (Lioumi)",
+        "geo_lat": 38.0040746,
+        "geo_lng": 23.6721562,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": null,
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/12/30/a8b95fad-d375-44d4-80f8-157ec185745f/a8b95fad-d375-44d4-80f8-157ec185745f-source.jpg",
+        "price_per_unit_area": "12",
+        "account_id": "ee8bd30f-f51f-498c-8925-4e01d7c83264",
+        "company_title": "Quick Home\t",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 45 sq.m.",
+        "title_abbreviation": "Apartment 45 sq.m.",
+        "price": "€550",
+        "distinctive_offer": "550 €",
+        "price_with_abbreviation": "550 €",
+        "price_per_square_meter": "€12/sq.m.",
+        "size_with_square_meter": "45 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Egaleo (Lioumi) Apartment 45 sq.m.",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/09/05/f57d377f-f220-4193-8c29-c5cbed4ec2e1/f57d377f-f220-4193-8c29-c5cbed4ec2e1-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/09/05/f57d377f-f220-4193-8c29-c5cbed4ec2e1/f57d377f-f220-4193-8c29-c5cbed4ec2e1-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/09/05/6bf134dc-2451-4c2f-8e84-4b904f26c3b4/6bf134dc-2451-4c2f-8e84-4b904f26c3b4-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/09/05/6bf134dc-2451-4c2f-8e84-4b904f26c3b4/6bf134dc-2451-4c2f-8e84-4b904f26c3b4-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/09/05/51547dc2-09c4-4c9c-b1c3-e0e4e6f858c8/51547dc2-09c4-4c9c-b1c3-e0e4e6f858c8-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/09/05/51547dc2-09c4-4c9c-b1c3-e0e4e6f858c8/51547dc2-09c4-4c9c-b1c3-e0e4e6f858c8-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/09/05/9f26fddb-cfcc-45e4-bead-286edf5c2375/9f26fddb-cfcc-45e4-bead-286edf5c2375-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/09/05/9f26fddb-cfcc-45e4-bead-286edf5c2375/9f26fddb-cfcc-45e4-bead-286edf5c2375-source.jpeg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/65217c1c-ccbe-4e18-8bac-ccb868fd15e2/egaleo-lioumi-550-45",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/12/30/a8b95fad-d375-44d4-80f8-157ec185745f/a8b95fad-d375-44d4-80f8-157ec185745f-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            }
+        ]
+    },
+    {
+        "id": "4c79c6c5-560e-4fe1-b44c-d83dda852868",
+        "www_id": "20250710151131198",
+        "internal_id": "20250710151131198",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Haidari (Egaleo limits)",
+        "geo_lat": 38.007659,
+        "geo_lng": 23.6651929,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": null,
+        "construction_year": null,
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/cd5cb460-41cb-4425-8692-4953bc6d22c6/cd5cb460-41cb-4425-8692-4953bc6d22c6-source.jpg",
+        "price_per_unit_area": "11",
+        "account_id": "9da914f5-5552-4091-956e-f6c3e95bbdea",
+        "company_title": "Ελπίς ",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Detached House 46 sq.m.",
+        "title_abbreviation": "Detached House 46 sq.m.",
+        "price": "€500",
+        "distinctive_offer": "500 €",
+        "price_with_abbreviation": "500 €",
+        "price_per_square_meter": "€11/sq.m.",
+        "size_with_square_meter": "46 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Haidari (Egaleo limits) Detached House 46 sq.m.",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/07/10/871f4055-fea6-486c-a121-8c83ea8d9f3e/871f4055-fea6-486c-a121-8c83ea8d9f3e-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/07/10/871f4055-fea6-486c-a121-8c83ea8d9f3e/871f4055-fea6-486c-a121-8c83ea8d9f3e-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/07/10/72e04aa2-ec06-40d5-883d-11625eb01783/72e04aa2-ec06-40d5-883d-11625eb01783-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/07/10/72e04aa2-ec06-40d5-883d-11625eb01783/72e04aa2-ec06-40d5-883d-11625eb01783-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/07/10/b3ed6073-69d6-4800-9451-b29c36bc6e94/b3ed6073-69d6-4800-9451-b29c36bc6e94-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/07/10/b3ed6073-69d6-4800-9451-b29c36bc6e94/b3ed6073-69d6-4800-9451-b29c36bc6e94-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/07/10/04a1534f-ab6d-41ac-946b-85c4fb0a88a6/04a1534f-ab6d-41ac-946b-85c4fb0a88a6-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/07/10/04a1534f-ab6d-41ac-946b-85c4fb0a88a6/04a1534f-ab6d-41ac-946b-85c4fb0a88a6-source.jpeg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/07/10/c428568f-c104-4862-ba74-c199bd043215/c428568f-c104-4862-ba74-c199bd043215-source.jpeg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/07/10/c428568f-c104-4862-ba74-c199bd043215/c428568f-c104-4862-ba74-c199bd043215-source.jpeg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/4c79c6c5-560e-4fe1-b44c-d83dda852868/haidari-egaleo-limits-500-46",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/cd5cb460-41cb-4425-8692-4953bc6d22c6/cd5cb460-41cb-4425-8692-4953bc6d22c6-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            }
+        ]
+    },
+    {
+        "id": "74a5ae0e-a6d4-45de-b9a4-d393816328ff",
+        "www_id": "20250520195639317",
+        "internal_id": "20250520195639317",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Peristeri (Nea Zoi)",
+        "geo_lat": 38.0193394,
+        "geo_lng": 23.6721153,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "2008",
+        "display_golden_border": false,
+        "owner_logo": null,
+        "price_per_unit_area": "13",
+        "account_id": null,
+        "company_title": null,
+        "is_commercial": false,
+        "sponsored": false,
+        "title": "Apartment 40 sq.m.",
+        "title_abbreviation": "Apartment 40 sq.m.",
+        "price": "€500",
+        "distinctive_offer": "500 €",
+        "price_with_abbreviation": "500 €",
+        "price_per_square_meter": "€13/sq.m.",
+        "size_with_square_meter": "40 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Peristeri (Nea Zoi) Apartment 40 sq.m.",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/24/2fd59568-232f-43e3-9eca-3289a16f873a/2fd59568-232f-43e3-9eca-3289a16f873a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/24/2fd59568-232f-43e3-9eca-3289a16f873a/2fd59568-232f-43e3-9eca-3289a16f873a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/24/3a7597c2-5290-458e-8c5c-5dc2ed827643/3a7597c2-5290-458e-8c5c-5dc2ed827643-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/24/3a7597c2-5290-458e-8c5c-5dc2ed827643/3a7597c2-5290-458e-8c5c-5dc2ed827643-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/24/688e0098-6b1a-4bcd-a84e-7a82e84905fa/688e0098-6b1a-4bcd-a84e-7a82e84905fa-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/24/688e0098-6b1a-4bcd-a84e-7a82e84905fa/688e0098-6b1a-4bcd-a84e-7a82e84905fa-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/26/fce64d0c-b8c4-488b-967a-fd175e1fe565/fce64d0c-b8c4-488b-967a-fd175e1fe565-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/26/fce64d0c-b8c4-488b-967a-fd175e1fe565/fce64d0c-b8c4-488b-967a-fd175e1fe565-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/26/c6a9ae6b-fe87-486c-8a8a-696efa793673/c6a9ae6b-fe87-486c-8a8a-696efa793673-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/26/c6a9ae6b-fe87-486c-8a8a-696efa793673/c6a9ae6b-fe87-486c-8a8a-696efa793673-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/26/1c145f0f-c8d3-48b9-8247-996d6cf7a63a/1c145f0f-c8d3-48b9-8247-996d6cf7a63a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/26/1c145f0f-c8d3-48b9-8247-996d6cf7a63a/1c145f0f-c8d3-48b9-8247-996d6cf7a63a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/05/26/f6a39ab8-185f-47f3-b1a1-cadad1f6a890/f6a39ab8-185f-47f3-b1a1-cadad1f6a890-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/05/26/f6a39ab8-185f-47f3-b1a1-cadad1f6a890/f6a39ab8-185f-47f3-b1a1-cadad1f6a890-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2026/06/19/994d6dd3-0e92-4b8c-98c4-63191ea8d137/994d6dd3-0e92-4b8c-98c4-63191ea8d137-source.png?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2026/06/19/994d6dd3-0e92-4b8c-98c4-63191ea8d137/994d6dd3-0e92-4b8c-98c4-63191ea8d137-source.png?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/74a5ae0e-a6d4-45de-b9a4-d393816328ff/peristeri-nea-zoi-500-40",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": null,
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "2008"
+            }
+        ]
+    },
+    {
+        "id": "96086542-3b4e-4f87-a348-d5390d0d0a9a",
+        "www_id": "20250410145317656",
+        "internal_id": "20250410145317656",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Ilion (Polyteknon)",
+        "geo_lat": 38.0297466,
+        "geo_lng": 23.7044654,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "1995",
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/d2ac2b40-e75d-4818-8316-d113fb6c537d/d2ac2b40-e75d-4818-8316-d113fb6c537d-source.jpg",
+        "price_per_unit_area": "12",
+        "account_id": "f8350201-7eae-4c73-87ca-d1da10d4cf7f",
+        "company_title": "Art Real Estate",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 46 sq.m.",
+        "title_abbreviation": "Apartment 46 sq.m.",
+        "price": "€550",
+        "distinctive_offer": "550 €",
+        "price_with_abbreviation": "550 €",
+        "price_per_square_meter": "€12/sq.m.",
+        "size_with_square_meter": "46 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Ilion (Polyteknon) Apartment 46 sq.m. renovated",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/49f62e9f-ab6f-45d1-82bc-5c862020ada2/49f62e9f-ab6f-45d1-82bc-5c862020ada2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/49f62e9f-ab6f-45d1-82bc-5c862020ada2/49f62e9f-ab6f-45d1-82bc-5c862020ada2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/e9ce5c70-913c-4d42-afd6-c8ac1fa10a87/e9ce5c70-913c-4d42-afd6-c8ac1fa10a87-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/e9ce5c70-913c-4d42-afd6-c8ac1fa10a87/e9ce5c70-913c-4d42-afd6-c8ac1fa10a87-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/a9077fa9-e7cf-462a-9b1b-16792cd9e22d/a9077fa9-e7cf-462a-9b1b-16792cd9e22d-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/a9077fa9-e7cf-462a-9b1b-16792cd9e22d/a9077fa9-e7cf-462a-9b1b-16792cd9e22d-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/00000b3f-cc4a-447c-8817-f9d5989fbd42/00000b3f-cc4a-447c-8817-f9d5989fbd42-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/00000b3f-cc4a-447c-8817-f9d5989fbd42/00000b3f-cc4a-447c-8817-f9d5989fbd42-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/2a62b153-3571-48bb-bfc6-9366feef997e/2a62b153-3571-48bb-bfc6-9366feef997e-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/2a62b153-3571-48bb-bfc6-9366feef997e/2a62b153-3571-48bb-bfc6-9366feef997e-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/2a4cb4ef-d7f3-456c-ad86-e16b2e2071df/2a4cb4ef-d7f3-456c-ad86-e16b2e2071df-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/2a4cb4ef-d7f3-456c-ad86-e16b2e2071df/2a4cb4ef-d7f3-456c-ad86-e16b2e2071df-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/f6da00b1-1bf2-420c-875a-eee3a38889ef/f6da00b1-1bf2-420c-875a-eee3a38889ef-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/f6da00b1-1bf2-420c-875a-eee3a38889ef/f6da00b1-1bf2-420c-875a-eee3a38889ef-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/dbbc0e0b-64cf-4fa3-8f4c-2d028c0381c2/dbbc0e0b-64cf-4fa3-8f4c-2d028c0381c2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/dbbc0e0b-64cf-4fa3-8f4c-2d028c0381c2/dbbc0e0b-64cf-4fa3-8f4c-2d028c0381c2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/79303ed6-b124-4169-9490-a92c869de796/79303ed6-b124-4169-9490-a92c869de796-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/79303ed6-b124-4169-9490-a92c869de796/79303ed6-b124-4169-9490-a92c869de796-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/3c105d69-3d7b-46ea-a21e-92c2462d8a58/3c105d69-3d7b-46ea-a21e-92c2462d8a58-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/3c105d69-3d7b-46ea-a21e-92c2462d8a58/3c105d69-3d7b-46ea-a21e-92c2462d8a58-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/141cd7e3-1a36-413a-bb46-d6d526796d07/141cd7e3-1a36-413a-bb46-d6d526796d07-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/141cd7e3-1a36-413a-bb46-d6d526796d07/141cd7e3-1a36-413a-bb46-d6d526796d07-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/9782235b-d53d-4ec6-838a-aef74e4d3c7b/9782235b-d53d-4ec6-838a-aef74e4d3c7b-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/9782235b-d53d-4ec6-838a-aef74e4d3c7b/9782235b-d53d-4ec6-838a-aef74e4d3c7b-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/04/10/8dd36b73-6f90-44d4-b20e-0769d2a6c7be/8dd36b73-6f90-44d4-b20e-0769d2a6c7be-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/04/10/8dd36b73-6f90-44d4-b20e-0769d2a6c7be/8dd36b73-6f90-44d4-b20e-0769d2a6c7be-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/96086542-3b4e-4f87-a348-d5390d0d0a9a/ilion-polyteknon-550-46",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/d2ac2b40-e75d-4818-8316-d113fb6c537d/d2ac2b40-e75d-4818-8316-d113fb6c537d-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "1995"
+            }
+        ]
+    },
+    {
+        "id": "1db3685b-1203-4331-bf01-f3154a162155",
+        "www_id": "864528099",
+        "internal_id": "49777365",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Athens (Tris Gefires)",
+        "geo_lat": 38.0120749,
+        "geo_lng": 23.7223309,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "1975",
+        "display_golden_border": false,
+        "owner_logo": null,
+        "price_per_unit_area": "8",
+        "account_id": null,
+        "company_title": null,
+        "is_commercial": false,
+        "sponsored": false,
+        "title": "Apartment 65 sq.m.",
+        "title_abbreviation": "Apartment 65 sq.m.",
+        "price": "€530",
+        "distinctive_offer": "530 €",
+        "price_with_abbreviation": "530 €",
+        "price_per_square_meter": "€8/sq.m.",
+        "size_with_square_meter": "65 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Athens (Tris Gefires) Apartment 65 sq.m. renovated",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2025/02/11/5f11cc77-6164-467c-bfb3-3952003ce418/5f11cc77-6164-467c-bfb3-3952003ce418-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2025/02/11/5f11cc77-6164-467c-bfb3-3952003ce418/5f11cc77-6164-467c-bfb3-3952003ce418-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/1db3685b-1203-4331-bf01-f3154a162155/athens-tris-gefires-530-65",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": null,
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "1975"
+            }
+        ]
+    },
+    {
+        "id": "55179660-0454-407f-acc0-3300656fa9f7",
+        "www_id": "856108021",
+        "internal_id": "49354737",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Ilion (Palatiani)",
+        "geo_lat": 38.0263338,
+        "geo_lng": 23.6942089,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor",
+            "Elevated Ground Floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "1980",
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/dec84ec0-763b-4875-ae23-269d2933cf7c/dec84ec0-763b-4875-ae23-269d2933cf7c-source.jpg",
+        "price_per_unit_area": "9",
+        "account_id": "8376a5e7-b21d-49de-add8-c9c31b9a8663",
+        "company_title": "Γκούμας Μεσιτικό Γραφείο",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 55 sq.m.",
+        "title_abbreviation": "Apartment 55 sq.m.",
+        "price": "€500",
+        "distinctive_offer": "500 €",
+        "price_with_abbreviation": "500 €",
+        "price_per_square_meter": "€9/sq.m.",
+        "size_with_square_meter": "55 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Ilion (Palatiani) Apartment 55 sq.m.",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/8a2ffcfc-eeec-4293-8970-be0570a5b8a2/8a2ffcfc-eeec-4293-8970-be0570a5b8a2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/8a2ffcfc-eeec-4293-8970-be0570a5b8a2/8a2ffcfc-eeec-4293-8970-be0570a5b8a2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/a04f546b-ada0-4526-9a79-140582b53316/a04f546b-ada0-4526-9a79-140582b53316-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/a04f546b-ada0-4526-9a79-140582b53316/a04f546b-ada0-4526-9a79-140582b53316-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/8dcaf750-d116-4259-aa9c-de131d8b6319/8dcaf750-d116-4259-aa9c-de131d8b6319-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/8dcaf750-d116-4259-aa9c-de131d8b6319/8dcaf750-d116-4259-aa9c-de131d8b6319-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/aa50b9bf-9364-4d3d-baf7-ed1b17b000f6/aa50b9bf-9364-4d3d-baf7-ed1b17b000f6-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/aa50b9bf-9364-4d3d-baf7-ed1b17b000f6/aa50b9bf-9364-4d3d-baf7-ed1b17b000f6-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/9cdc1125-cd27-47b2-9492-7f62e5bd49ce/9cdc1125-cd27-47b2-9492-7f62e5bd49ce-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/9cdc1125-cd27-47b2-9492-7f62e5bd49ce/9cdc1125-cd27-47b2-9492-7f62e5bd49ce-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/02fbce74-1bca-49d6-864b-53fd09fa65e5/02fbce74-1bca-49d6-864b-53fd09fa65e5-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/02fbce74-1bca-49d6-864b-53fd09fa65e5/02fbce74-1bca-49d6-864b-53fd09fa65e5-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/3a7a885f-1d2c-4d78-9f3a-bf9cca4c30d2/3a7a885f-1d2c-4d78-9f3a-bf9cca4c30d2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/3a7a885f-1d2c-4d78-9f3a-bf9cca4c30d2/3a7a885f-1d2c-4d78-9f3a-bf9cca4c30d2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/bde1639a-9cd5-4d3f-8ebe-a3e3bb2c090e/bde1639a-9cd5-4d3f-8ebe-a3e3bb2c090e-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/bde1639a-9cd5-4d3f-8ebe-a3e3bb2c090e/bde1639a-9cd5-4d3f-8ebe-a3e3bb2c090e-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/d285278a-102d-4123-bdac-abc290ed00c5/d285278a-102d-4123-bdac-abc290ed00c5-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/d285278a-102d-4123-bdac-abc290ed00c5/d285278a-102d-4123-bdac-abc290ed00c5-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/ec6bbe66-d6f9-4aa7-b6ff-30b8df4babae/ec6bbe66-d6f9-4aa7-b6ff-30b8df4babae-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/ec6bbe66-d6f9-4aa7-b6ff-30b8df4babae/ec6bbe66-d6f9-4aa7-b6ff-30b8df4babae-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/e62101a0-bc15-4a5c-bddc-c08ff3681172/e62101a0-bc15-4a5c-bddc-c08ff3681172-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/e62101a0-bc15-4a5c-bddc-c08ff3681172/e62101a0-bc15-4a5c-bddc-c08ff3681172-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/4169b264-9842-484e-ae81-187c831f7a5a/4169b264-9842-484e-ae81-187c831f7a5a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/4169b264-9842-484e-ae81-187c831f7a5a/4169b264-9842-484e-ae81-187c831f7a5a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/822eb1fd-9eca-419d-9b15-c4fbbda1b303/822eb1fd-9eca-419d-9b15-c4fbbda1b303-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/822eb1fd-9eca-419d-9b15-c4fbbda1b303/822eb1fd-9eca-419d-9b15-c4fbbda1b303-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/22370d05-3a7e-4db7-90df-309dabddf4a9/22370d05-3a7e-4db7-90df-309dabddf4a9-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/22370d05-3a7e-4db7-90df-309dabddf4a9/22370d05-3a7e-4db7-90df-309dabddf4a9-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/fb56e5d2-3bee-40f3-ba54-c136c28bb077/fb56e5d2-3bee-40f3-ba54-c136c28bb077-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/fb56e5d2-3bee-40f3-ba54-c136c28bb077/fb56e5d2-3bee-40f3-ba54-c136c28bb077-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/ffd408e5-49dc-4b50-a5c0-fbb45f69e5bb/ffd408e5-49dc-4b50-a5c0-fbb45f69e5bb-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/ffd408e5-49dc-4b50-a5c0-fbb45f69e5bb/ffd408e5-49dc-4b50-a5c0-fbb45f69e5bb-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/accccebc-a29c-42a5-bb23-1804011403ca/accccebc-a29c-42a5-bb23-1804011403ca-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/accccebc-a29c-42a5-bb23-1804011403ca/accccebc-a29c-42a5-bb23-1804011403ca-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/bbd24edd-20de-4a06-96ce-1c8e191afd91/bbd24edd-20de-4a06-96ce-1c8e191afd91-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/bbd24edd-20de-4a06-96ce-1c8e191afd91/bbd24edd-20de-4a06-96ce-1c8e191afd91-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/74ea9268-6982-4eaf-b482-fddb99cd272a/74ea9268-6982-4eaf-b482-fddb99cd272a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/74ea9268-6982-4eaf-b482-fddb99cd272a/74ea9268-6982-4eaf-b482-fddb99cd272a-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/7527e15f-33c5-49c3-bd69-10438bc2d232/7527e15f-33c5-49c3-bd69-10438bc2d232-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/7527e15f-33c5-49c3-bd69-10438bc2d232/7527e15f-33c5-49c3-bd69-10438bc2d232-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/ecefb610-b2c8-483d-b2ce-412f29d58217/ecefb610-b2c8-483d-b2ce-412f29d58217-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/ecefb610-b2c8-483d-b2ce-412f29d58217/ecefb610-b2c8-483d-b2ce-412f29d58217-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/e1a63702-8dd9-47ff-a036-555c8ad4f2a5/e1a63702-8dd9-47ff-a036-555c8ad4f2a5-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/e1a63702-8dd9-47ff-a036-555c8ad4f2a5/e1a63702-8dd9-47ff-a036-555c8ad4f2a5-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/bfd1fe28-688c-4d73-b107-19071ec3f838/bfd1fe28-688c-4d73-b107-19071ec3f838-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/bfd1fe28-688c-4d73-b107-19071ec3f838/bfd1fe28-688c-4d73-b107-19071ec3f838-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/10/24/9536f58d-de7b-4213-85ba-4b563828814a/9536f58d-de7b-4213-85ba-4b563828814a-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/10/24/9536f58d-de7b-4213-85ba-4b563828814a/9536f58d-de7b-4213-85ba-4b563828814a-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/55179660-0454-407f-acc0-3300656fa9f7/ilion-palatiani-500-55",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/dec84ec0-763b-4875-ae23-269d2933cf7c/dec84ec0-763b-4875-ae23-269d2933cf7c-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "1980"
+            }
+        ]
+    },
+    {
+        "id": "c24438fa-4650-464a-a214-b932809277c8",
+        "www_id": "847134234",
+        "internal_id": "48896982",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Ilion (Palatiani)",
+        "geo_lat": 38.026424,
+        "geo_lng": 23.69402,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor",
+            "Elevated Ground Floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": "1",
+        "construction_year": "1970",
+        "display_golden_border": false,
+        "owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/dec84ec0-763b-4875-ae23-269d2933cf7c/dec84ec0-763b-4875-ae23-269d2933cf7c-source.jpg",
+        "price_per_unit_area": "9",
+        "account_id": "8376a5e7-b21d-49de-add8-c9c31b9a8663",
+        "company_title": "Γκούμας Μεσιτικό Γραφείο",
+        "is_commercial": true,
+        "sponsored": false,
+        "title": "Apartment 54 sq.m.",
+        "title_abbreviation": "Apartment 54 sq.m.",
+        "price": "€500",
+        "distinctive_offer": "500 €",
+        "price_with_abbreviation": "500 €",
+        "price_per_square_meter": "€9/sq.m.",
+        "size_with_square_meter": "54 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Ilion (Palatiani) Apartment 54 sq.m.",
+        "image_gallery": [
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/41cf082a-9842-423c-8c65-d8343157f027/41cf082a-9842-423c-8c65-d8343157f027-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/41cf082a-9842-423c-8c65-d8343157f027/41cf082a-9842-423c-8c65-d8343157f027-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/a91e6722-631e-455c-ae81-03a178dc862e/a91e6722-631e-455c-ae81-03a178dc862e-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/a91e6722-631e-455c-ae81-03a178dc862e/a91e6722-631e-455c-ae81-03a178dc862e-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/fa67f3e2-60a3-40b3-bab1-c65fad929545/fa67f3e2-60a3-40b3-bab1-c65fad929545-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/fa67f3e2-60a3-40b3-bab1-c65fad929545/fa67f3e2-60a3-40b3-bab1-c65fad929545-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/eda8ce3b-75ec-4b7d-b5ca-d5856c187578/eda8ce3b-75ec-4b7d-b5ca-d5856c187578-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/eda8ce3b-75ec-4b7d-b5ca-d5856c187578/eda8ce3b-75ec-4b7d-b5ca-d5856c187578-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/f712fc94-011c-48fc-9f24-25908006ca65/f712fc94-011c-48fc-9f24-25908006ca65-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/f712fc94-011c-48fc-9f24-25908006ca65/f712fc94-011c-48fc-9f24-25908006ca65-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/161a33bb-3e3d-47a6-b03b-28b15f46bab0/161a33bb-3e3d-47a6-b03b-28b15f46bab0-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/161a33bb-3e3d-47a6-b03b-28b15f46bab0/161a33bb-3e3d-47a6-b03b-28b15f46bab0-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/37143838-ef10-4290-bcca-ab8d76c3e0c2/37143838-ef10-4290-bcca-ab8d76c3e0c2-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/37143838-ef10-4290-bcca-ab8d76c3e0c2/37143838-ef10-4290-bcca-ab8d76c3e0c2-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/5a12f355-e0ec-4f0f-abe0-c46ae40b77ab/5a12f355-e0ec-4f0f-abe0-c46ae40b77ab-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/5a12f355-e0ec-4f0f-abe0-c46ae40b77ab/5a12f355-e0ec-4f0f-abe0-c46ae40b77ab-source.jpg?width=640&height=480&format=jpg"
+                }
+            },
+            {
+                "medium": {
+                    "webp": "https://blob.cdn.xe.gr/live/2024/06/24/87eb2717-22e0-46c6-9ffc-6cd050d089f0/87eb2717-22e0-46c6-9ffc-6cd050d089f0-source.jpg?width=640&height=480&format=webp",
+                    "jpeg": "https://blob.cdn.xe.gr/live/2024/06/24/87eb2717-22e0-46c6-9ffc-6cd050d089f0/87eb2717-22e0-46c6-9ffc-6cd050d089f0-source.jpg?width=640&height=480&format=jpg"
+                }
+            }
+        ],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/c24438fa-4650-464a-a214-b932809277c8/ilion-palatiani-500-54",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": "https://blob.cdn.xe.gr/live/2024/10/17/dec84ec0-763b-4875-ae23-269d2933cf7c/dec84ec0-763b-4875-ae23-269d2933cf7c-source.jpg?width=300&height=300&fit=inside",
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-bathroom",
+                "value": "1",
+                "prefix": "×"
+            },
+            {
+                "icon": "xe xe-house-construction",
+                "value": "1970"
+            }
+        ]
+    },
+    {
+        "id": "559566f4-5923-49d0-8a0f-2aa2cd3ef971",
+        "www_id": "817014522",
+        "internal_id": "47243765",
+        "item_type": "re_residence",
+        "transaction_type": "LET.NORMAL",
+        "address": "Nea Ionia (Ano Kalogreza)",
+        "geo_lat": 38.0399799,
+        "geo_lng": 23.7655329,
+        "ad_group_id": null,
+        "levels": [
+            "Ground floor"
+        ],
+        "bedrooms": "1",
+        "bathrooms": null,
+        "construction_year": null,
+        "display_golden_border": false,
+        "owner_logo": null,
+        "price_per_unit_area": "10",
+        "account_id": null,
+        "company_title": null,
+        "is_commercial": false,
+        "sponsored": false,
+        "title": "Apartment 42 sq.m.",
+        "title_abbreviation": "Apartment 42 sq.m.",
+        "price": "€400",
+        "distinctive_offer": "400 €",
+        "price_with_abbreviation": "400 €",
+        "price_per_square_meter": "€10/sq.m.",
+        "size_with_square_meter": "42 sq.m.",
+        "date": "",
+        "extra_seo_info": "Home for rent",
+        "extra_seo_info_property_tile": "Home for rent",
+        "image_alt": "Home for rent Nea Ionia (Ano Kalogreza) Apartment 42 sq.m.",
+        "image_gallery": [],
+        "url": "https://www.xe.gr/en/property/d/property-to-rent/559566f4-5923-49d0-8a0f-2aa2cd3ef971/nea-ionia-ano-kalogreza-400-42",
+        "unique_group_url": null,
+        "show_formatted_owner_logo": null,
+        "tile_details": [
+            {
+                "icon": "xe xe-bedroom",
+                "value": "1",
+                "prefix": "×"
+            }
+        ]
     }
 ]

@@ -295,27 +295,40 @@ def search_xe():
         "sorting": os.getenv("SORTING"),
     }
 
-    final_url = f"{base_url}?"
+    base_params = f"{base_url}?"
     for key, value in filters.items():
         if value:
-            final_url += f"&{key}={value}"
+            base_params += f"&{key}={value}"
 
     location_ids = json.loads(os.getenv("XE_LOCATION_IDS"))
-
-
     for location_id in location_ids:
-        final_url += f"&geo_place_ids[]={location_id}"
+        base_params += f"&geo_place_ids[]={location_id}"
 
-    scrapper_url = build_scraperapi_url(final_url)
+    # Fetch all pages so we never miss listings beyond the first page.
+    results = []
+    page = 1
+    while True:
+        paged_url = f"{base_params}&page={page}"
+        scrapper_url = build_scraperapi_url(paged_url)
+        request = requests.get(scrapper_url, timeout=90)
 
-    request = requests.get(scrapper_url, timeout=90)
+        if not request.ok:
+            log_error("search_xe.fetch",
+                      message=f"XE request failed: HTTP {request.status_code} (page {page})")
+            break
 
-    if not request.ok:
-        log_error("search_xe.fetch", message=f"XE request failed: HTTP {request.status_code}")
-        return
+        data = request.json()
+        page_results = data.get("results", [])
+        results.extend(page_results)
 
-    data = request.json()
-    results = data["results"]
+        paging = data.get("paging", {})
+        total_pages = paging.get("total_pages", 1)
+        event(f"XE page {page}/{total_pages} — {len(page_results)} results")
+
+        if page >= total_pages:
+            break
+        page += 1
+        time.sleep(3)  # be polite between pages
 
     new_properties = []
     for result in results:
@@ -331,7 +344,7 @@ def search_xe():
         f.write(json.dumps(properties, indent=4, ensure_ascii=False))
 
     if len(new_properties) == 0:
-        event(f"XE: no new properties ({len(results)} checked).")
+        event(f"XE: no new properties ({len(results)} checked across {page} page(s)).")
     else:
         event(f"XE: {len(new_properties)} new properties — sending email...", Fore.LIGHTGREEN_EX)
         send_email("(XE) New Properties Found!", "\n\n".join([prop["url"] for prop in new_properties]))
