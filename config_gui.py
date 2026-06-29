@@ -559,7 +559,7 @@ font-family:'Segoe UI',Arial,sans-serif;color:#1f2937;">
 <div style="background:linear-gradient(135deg,#1b222b,#0f1419);padding:28px 24px;text-align:center;">
 <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
      width="80" height="80" style="border-radius:18px;margin-bottom:10px;">
-<h1 style="margin:0;color:#FFD43B;font-size:22px;">🏠 Property Finder</h1>
+<h1 style="margin:0;color:#FFD43B;font-size:22px;">Property Finder</h1>
 <p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">Manually resent from the dashboard</p></div>
 <div style="padding:24px;"><h2 style="margin:0 0 16px;">Listings ({len(urls)})</h2>
 {listings_html}</div>

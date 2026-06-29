@@ -287,7 +287,7 @@ def send_email(subject, body):
             <div style="background:linear-gradient(135deg,#1b222b,#0f1419);padding:28px 24px;text-align:center;">
               <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
                    alt="Housefinder" width="80" height="80" style="display:inline-block;margin-bottom:10px;border-radius:18px;">
-              <h1 style="margin:0;color:#FFD43B;font-size:22px;">🏠 Property Finder</h1>
+              <h1 style="margin:0;color:#FFD43B;font-size:22px;">Property Finder</h1>
               <p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">{now}</p>
             </div>
             <div style="padding:24px;">
