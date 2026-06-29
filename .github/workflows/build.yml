@@ -92,6 +92,37 @@ jobs:
           echo "[]" > dist/Housefinder/data/results.json
           echo "[]" > dist/Housefinder/data/results_spitogatos.json
 
+      # ── Linux: .desktop file + install script for icon support ───────────
+      - name: Create Linux .desktop file and install script
+        if: matrix.name == 'linux'
+        run: |
+          cat > dist/Housefinder/Housefinder.desktop <<'EOF'
+          [Desktop Entry]
+          Version=1.0
+          Type=Application
+          Name=Housefinder
+          Comment=Greek property alert bot — XE.gr & Spitogatos.gr
+          Exec=INSTALL_DIR/Housefinder
+          Icon=INSTALL_DIR/assets/logo.png
+          Terminal=false
+          Categories=Network;Utility;
+          EOF
+
+          cat > dist/Housefinder/install.sh <<'EOF'
+          #!/usr/bin/env bash
+          # Registers Housefinder as a desktop application with an icon.
+          # Run once after extracting: ./install.sh
+          set -euo pipefail
+          DIR="$(cd "$(dirname "$(readlink -f "$0")")" && pwd)"
+          DESKTOP="$HOME/.local/share/applications/Housefinder.desktop"
+          mkdir -p "$HOME/.local/share/applications"
+          sed "s|INSTALL_DIR|$DIR|g" "$DIR/Housefinder.desktop" > "$DESKTOP"
+          chmod +x "$DIR/Housefinder"
+          echo "✅ Installed. You can now launch Housefinder from your app menu."
+          echo "   Or run directly: $DIR/Housefinder"
+          EOF
+          chmod +x dist/Housefinder/install.sh
+
       # ── Archive ───────────────────────────────────────────────────────────
       - name: Archive (Linux / Mac)
         if: matrix.name != 'windows'
@@ -138,10 +169,8 @@ jobs:
             ```bash
             tar -xzf housefinder-linux.tar.gz
             cd Housefinder
-            # First run — download the Spitogatos browser (one-time, ~150 MB)
-            ./Housefinder --setup-browser   # or: python -m playwright install chromium
-            # Launch the app
-            ./Housefinder
+            ./install.sh     # registers the app + icon in your app menu (one-time)
+            ./Housefinder    # launch — the app will prompt to install Chromium on first run
             ```
 
             ### Install (Windows)
