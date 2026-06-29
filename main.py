@@ -200,8 +200,8 @@ def send_email(subject, body):
         <div style="max-width:600px;margin:0 auto;padding:24px;">
           <div style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06);">
             <div style="background:linear-gradient(135deg,#1b222b,#0f1419);padding:28px 24px;text-align:center;">
-              <img src="https://images.icon-icons.com/2699/PNG/512/python_logo_icon_168886.png"
-                   alt="Python" width="64" height="64" style="display:inline-block;margin-bottom:10px;">
+              <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
+                   alt="Housefinder" width="80" height="80" style="display:inline-block;margin-bottom:10px;border-radius:18px;">
               <h1 style="margin:0;color:#FFD43B;font-size:22px;">🏠 Property Finder</h1>
               <p style="margin:6px 0 0;color:#94a3b8;font-size:13px;">{now}</p>
             </div>
