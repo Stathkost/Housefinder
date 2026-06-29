@@ -1,0 +1,291 @@
+import os
+from dotenv import load_dotenv
+import requests
+import json
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from datetime import date, datetime, timedelta
+import time
+import psutil
+from colorama import init, Fore, Style
+
+load_dotenv()
+init(autoreset=True, convert=False)
+sender = os.getenv("SENDER_EMAIL")
+password = os.getenv("SENDER_PASSWORD")
+recipients_emails = json.loads(os.getenv("RECIPIENTS_EMAILS"))
+scrapper_api_key = os.getenv("SCRAPPER_API_KEY")
+COUNTDOWN_DURATION = 30 * 60  # 30 minutes
+script_trigger_count = 0
+total_uptime = timedelta()
+
+
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def log():
+     with open(f"./data/logs/logs_{date.today()}.txt", "a", encoding="utf-8") as f:
+        f.write(f"E-mail sent to {recipients_emails}.\n")
+        f.write(f"E-mail sent from {sender}.\n")
+        f.write(f"------------------------------------------------------------------------------------------------------------------\n")
+        f.write(f".\n")
+        f.write(f".\n")
+        f.write(f"\n\n")
+
+
+def countdown_timer():
+    global total_uptime
+    for remaining in range(COUNTDOWN_DURATION, 0, -1):
+        minutes, seconds = divmod(remaining, 60)
+        clear_console()
+        print(
+            f"{Fore.LIGHTWHITE_EX}{Style.BRIGHT}Countdown: {minutes:02d}:{seconds:02d}")
+        print(f"{Fore.LIGHTWHITE_EX}Total Uptime: {total_uptime}")
+        print(
+            f"{Fore.LIGHTRED_EX}Script has been triggered {script_trigger_count} times.")
+        print("")
+        print("")
+        print(f"{Fore.LIGHTWHITE_EX}Sender: {sender}")
+        print(f"{Fore.LIGHTWHITE_EX}Recipients: {recipients_emails}")
+        print(
+            f"{Fore.LIGHTWHITE_EX}Python Scripted with 🤍 from Junior developer Konstantinosstath!")
+        print("")
+        print("")
+        print(f"{Fore.LIGHTWHITE_EX}CPU Usage: {psutil.cpu_percent()}%")
+        print(f"{Fore.LIGHTWHITE_EX}Memory Usage: {psutil.virtual_memory().percent}%")
+        print(f"{Fore.LIGHTWHITE_EX}Press Ctrl+C to stop the script.")
+        time.sleep(1)
+        total_uptime += timedelta(seconds=1)
+
+
+def information():
+    print(f"Sender: {sender}")
+    print(f"Recipients: {recipients_emails}")
+    print("")
+    time.sleep(3)
+
+
+def send_email(subject, body):
+    subject_with_date_time = f"{subject} - {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}"
+    msg = MIMEMultipart()
+    msg['From'] = sender
+    msg['To'] = ", ".join(recipients_emails)
+    msg['Subject'] = subject_with_date_time
+    #fixe the body that have /n/n
+    fixed_body = body.replace("\n\n", "<br>")
+    
+    html_content = f"""
+            <html>
+                <head>
+                    <style>
+                        body {{
+                            font-family: Arial, sans-serif;
+                            background-color: #F7F9FB; /* Light gray background */
+                            color: #333; /* Dark gray text */
+                            text-align: center;
+                        }}
+                        .container {{
+                            padding: 20px;
+                        }}
+                        .footer {{
+                            margin-top: 20px;
+                            font-size: 12px;
+                            color: #555; /* Medium gray footer text */
+                            text-align: center;
+                            background-color: #F7F9FB;
+                            padding: 5px;
+                        }}
+                        .message {{
+                            border: 1px solid #FFD43B;
+                            padding: 10px;
+                            margin: 20px;
+                            text-align: center; /* Center-align the text */
+                        }}
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <h1 style="color: #FFD43B;;">Property Finder</h1>
+                        <h2>New listings🌟</h2>
+                        <div style="text-align: center;">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Python.svg/1200px-Python.svg.png" alt="Python Logo" style="max-width: 200px; margin: 20px auto;">
+                        </div>
+                        <div class="message">
+                            New properties listings!<br>
+                            {fixed_body}<br>
+                            Thank you for using our service!
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="contact">
+                            <p>Python Scripted with 🤍 from Junior developer Konstantinosstath!</p>
+                        </div>
+                    </div>
+                </body>
+            </html>
+            """
+
+    msg.attach(MIMEText(html_content, 'html'))
+
+    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+    server.login(sender, password)
+    server.sendmail(sender, recipients_emails, msg.as_string())
+    server.quit()
+
+
+def main():
+    global script_trigger_count
+    while True:
+        clear_console()
+        information()
+        script_trigger_count += 1
+        search_xe()
+        search_spitogatos()
+        log()
+        countdown_timer()
+
+
+def search_xe():
+    print("Running XE scrapper...")
+    with open("./data/results.json", "r", encoding="utf-8") as f:
+        properties = json.load(f)
+
+    base_url = "https://www.xe.gr/en/property/results/map_search"
+
+    filters = {
+        "minimum_price": os.getenv("MINIMUM_PRICE"),
+        "maximum_price": os.getenv("MAXIMUM_PRICE"),
+        "minimum_size": os.getenv("MINIMUM_SIZE"),
+        "maximum_size": os.getenv("MAXIMUM_SIZE"),
+        "minimum_bedrooms": os.getenv("MINIMUM_BEDROOMS"),
+        "maximum_bedrooms": os.getenv("MAXIMUM_BEDROOMS"),
+        "minimum_bathrooms": os.getenv("MINIMUM_BATHROOMS"),
+        "maximum_bathrooms": os.getenv("MAXIMUM_BATHROOMS"),
+        "minimum_level": os.getenv("MINIMUM_LEVEL"),
+        "maximum_level": os.getenv("MAXIMUM_LEVEL"),
+        "sorting": os.getenv("SORTING"),
+    }
+
+    final_url = f"{base_url}?"
+    for key, value in filters.items():
+        if value:
+            final_url += f"&{key}={value}"
+
+    location_ids = json.loads(os.getenv("XE_LOCATION_IDS"))
+
+
+    for location_id in location_ids:
+        final_url += f"&geo_place_ids[]={location_id}"
+
+    scrapper_url = f"http://api.scraperapi.com?api_key={scrapper_api_key}&url={final_url}"
+
+    request = requests.get(scrapper_url)
+
+    if not request.ok:
+        print("Error", request.status_code)
+        return
+
+    data = request.json()
+    results = data["results"]
+
+    new_properties = []
+    for result in results:
+        if any(obj.get("id") == result["id"] for obj in properties):
+            continue
+
+        new_properties.append(result)
+        print("Found new property!", result["url"])
+
+    properties.extend(new_properties)
+
+    with open("./data/results.json", "w", encoding="utf-8") as f:
+        f.write(json.dumps(results, indent=4, ensure_ascii=False))
+
+    if len(new_properties) == 0:
+        print("No new properties found.")
+    else:
+        print("Sending email...")
+        send_email("(XE) New Properties Found!", "\n\n".join([prop["url"] for prop in new_properties]))
+
+    with open(f"./data/logs/logs_{date.today()}.txt", "a", encoding="utf-8") as f:
+        f.write(f"[{datetime.now().strftime('%d/%m/%Y %H:%M:%S')}]\n(XE) found {len(new_properties)} new properties.\n")
+        f.write(f"------------------------------------------------------------------------------------------------------------------\n")
+
+
+    print("Done!")
+
+
+def search_spitogatos():
+    print("Running Spitogatos scrapper...")
+    with open("./data/results_spitogatos.json", "r", encoding="utf-8") as f:
+        properties = json.load(f)
+
+    base_url = "https://www.spitogatos.gr/n_api/v1/properties/search-results"
+
+    filters = { 
+        "listingType": os.getenv("LISTING_TYPE"),
+        "category": os.getenv("CATEGORY"),
+        "priceLow": os.getenv("PRICE_LOW"),
+        "priceHigh": os.getenv("PRICE_HIGH"),
+        "livingAreaLow": os.getenv("LIVING_AREA_LOW"),
+        "livingAreaHigh": os.getenv("LIVING_AREA_HIGH"),
+        "roomsLow": os.getenv("ROOMS_LOW"),
+        "roomsHigh": os.getenv("ROOMS_HIGH"),
+        "floorNumberLow": os.getenv("FLOOR_NUMBER_LOW"),
+        "floorNumberHigh": os.getenv("FLOOR_NUMBER_HIGH"),
+        "sortBy": os.getenv("SORT_BY"),
+    }
+
+    final_url = f"{base_url}?"
+    for key, value in filters.items():
+        if value:
+            final_url += f"&{key}={value}"
+
+    location_ids = json.loads(os.getenv("LOCATION_IDS"))
+
+
+    for location_id in location_ids:
+        final_url += f"&areaIDs[]={location_id}"
+
+    scrapper_url = f"http://api.scraperapi.com?api_key={scrapper_api_key}&url={final_url}"
+    request = requests.get(scrapper_url)
+
+    if not request.ok:
+        print("Error", request.status_code)
+        return
+
+    data = request.json()
+    results = data["data"]
+
+    url_prop_path = "https://www.spitogatos.gr/en/property/21"
+
+    new_properties = []
+    for result in results:
+        if any(obj.get("id") == result["id"] for obj in properties):
+            continue
+
+        new_properties.append(result)
+        print("Found new property!", f"{url_prop_path}{result['id']}")
+
+    properties.extend(new_properties)
+
+    with open("./data/results_spitogatos.json", "w", encoding="utf-8") as f:
+        f.write(json.dumps(results, indent=4, ensure_ascii=False))
+
+    if len(new_properties) == 0:
+        print("No new properties found.")
+    else:
+        print("Sending email...")
+        send_email("(Spitogatos) New Properties Found!", "\n\n".join([f"{url_prop_path}{prop['id']}" for prop in new_properties]))
+
+    with open(f"./data/logs/logs_{date.today()}.txt", "a", encoding="utf-8") as f:
+        f.write(f"[{datetime.now().strftime('%d/%m/%Y %H:%M:%S')}]\n(Spitogatos) found {len(new_properties)} new properties.\n")
+        f.write(f"------------------------------------------------------------------------------------------------------------------\n")
+
+    print("Done!")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,13 @@
+[Unit]
+Description=Housefinder config GUI (http://127.0.0.1:5000)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/konstantinos/Documents/projects/Housefinder
+ExecStart=/home/konstantinos/Documents/projects/Housefinder/venv/bin/python /home/konstantinos/Documents/projects/Housefinder/config_gui.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

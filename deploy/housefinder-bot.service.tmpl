@@ -1,0 +1,14 @@
+[Unit]
+Description=Housefinder property bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=@PROJ@
+ExecStart=@PY@ @PROJ@/main.py
+Restart=always
+RestartSec=15
+
+[Install]
+WantedBy=default.target

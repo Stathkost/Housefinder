@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.env
+!example.env
+venv/
+
+# runtime/ephemeral data (the results*.json "database" stays tracked on purpose)
+data/activity.log
+data/bot.pid
+data/bot_stdout.log
