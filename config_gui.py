@@ -465,7 +465,8 @@ PAGE = r"""
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Housefinder Config</title>
+<title>Housefinder</title>
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png">
 <style>
   :root { --y:#FFD43B; --bg:#0f1419; --card:#1b222b; --line:#2c3744; --txt:#e6edf3; --mut:#8b98a5; }
   * { box-sizing:border-box; }
@@ -506,7 +507,9 @@ PAGE = r"""
 </head>
 <body>
 <header>
-  <h1>🏠 <span>Housefinder</span> Config</h1>
+  <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
+       width="36" height="36" style="border-radius:8px;flex-shrink:0">
+  <h1><span>Housefinder</span> Config</h1>
   <span id="botPill" class="pill">bot: …</span>
   <span id="bootPill" class="pill" title="Whether the bot auto-starts after reboot"></span>
   <div style="flex:1"></div>
@@ -529,7 +532,7 @@ PAGE = r"""
 
   <div class="card">
     <h2>ScraperAPI</h2>
-    <label>API key</label><input id="SCRAPPER_API_KEY">
+    <label>API key</label><input id="SCRAPPER_API_KEY" type="password">
     <div class="row" style="margin-top:10px">
       <div><label>Premium proxies</label>
         <select id="SCRAPERAPI_PREMIUM"><option value="false">off</option><option value="true">on</option></select></div>
