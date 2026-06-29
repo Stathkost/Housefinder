@@ -32,6 +32,7 @@ try:
 except ValueError:
     SEARCH_INTERVAL_MINUTES = 30
 COUNTDOWN_DURATION = SEARCH_INTERVAL_MINUTES * 60
+TRIGGER_PATH = "./data/trigger.now"
 
 
 def event(msg, color=Fore.LIGHTWHITE_EX):
@@ -222,6 +223,13 @@ def countdown_timer():
     is_tty = sys.stdout.isatty()
     event(f"Next check in {SEARCH_INTERVAL_MINUTES} min", Fore.LIGHTBLACK_EX)
     for remaining in range(COUNTDOWN_DURATION, 0, -1):
+        if os.path.exists(TRIGGER_PATH):
+            try:
+                os.remove(TRIGGER_PATH)
+            except OSError:
+                pass
+            event("Manual fetch triggered — running now.", Fore.LIGHTYELLOW_EX)
+            break
         if is_tty:
             minutes, seconds = divmod(remaining, 60)
             clear_console()

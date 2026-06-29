@@ -28,6 +28,7 @@ PID_PATH = os.path.join(BASE_DIR, "data", "bot.pid")
 RESULTS_XE = os.path.join(BASE_DIR, "data", "results.json")
 RESULTS_SPITO = os.path.join(BASE_DIR, "data", "results_spitogatos.json")
 PLATFORM = platform.system()   # 'Linux', 'Windows', 'Darwin'
+TRIGGER_PATH = os.path.join(BASE_DIR, "data", "trigger.now")
 
 UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
@@ -438,6 +439,38 @@ def api_bot_stop():
     return jsonify({"ok": True})
 
 
+@app.route("/api/bot/trigger", methods=["POST"])
+def api_bot_trigger():
+    """Signal the bot to skip the countdown and run immediately."""
+    try:
+        open(TRIGGER_PATH, "w").close()
+        return jsonify({"ok": True})
+    except Exception as e:
+        return jsonify({"ok": False, "msg": str(e)})
+
+
+@app.route("/api/bot/countdown")
+def api_bot_countdown():
+    """Return seconds remaining until the next scheduled fetch cycle."""
+    import re
+    log_path = os.path.join(BASE_DIR, "data", "activity.log")
+    try:
+        with open(log_path, "r", encoding="utf-8", errors="replace") as f:
+            lines = f.readlines()
+        pat = re.compile(r"\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] Next check in (\d+) min")
+        for line in reversed(lines):
+            m = pat.search(line)
+            if m:
+                from datetime import datetime, timedelta
+                ts  = datetime.strptime(m.group(1), "%Y-%m-%d %H:%M:%S")
+                mins = int(m.group(2))
+                remaining = int((ts + timedelta(minutes=mins) - datetime.now()).total_seconds())
+                return jsonify({"seconds": max(0, remaining), "interval": mins})
+        return jsonify({"seconds": None})
+    except Exception:
+        return jsonify({"seconds": None})
+
+
 @app.route("/api/bot/restart", methods=["POST"])
 def api_bot_restart():
     if service_installed():
@@ -618,7 +651,9 @@ PAGE = r"""
   <h1><span>Housefinder</span> Config</h1>
   <span id="botPill" class="pill">bot: …</span>
   <span id="bootPill" class="pill" title="Whether the bot auto-starts after reboot"></span>
+  <span id="countdownPill" class="pill" title="Time until next automatic fetch"></span>
   <div style="flex:1"></div>
+  <button class="btn-d" id="triggerBtn" onclick="triggerNow()" title="Skip countdown and fetch now">⚡ Fetch now</button>
   <button class="btn-g" onclick="botStart()">Start</button>
   <button class="btn-d" onclick="botRestart()">Restart</button>
   <button class="btn-r" onclick="botStop()">Stop</button>
@@ -902,6 +937,37 @@ async function botStart(){ await fetch('/api/bot/start',{method:'POST'}); setTim
 async function botStop(){ await fetch('/api/bot/stop',{method:'POST'}); setTimeout(botStatus,800); toast('Bot stopped'); }
 async function botRestart(){ await fetch('/api/bot/restart',{method:'POST'}); setTimeout(botStatus,1200); toast('Bot restarting…'); }
 
+// ── Countdown ─────────────────────────────────────────────────────────────
+let _cdSecs=null, _cdInterval=null;
+
+async function fetchCountdown(){
+  try{
+    const d=await(await fetch('/api/bot/countdown')).json();
+    _cdSecs = (d.seconds!=null) ? d.seconds : null;
+    renderCountdown();
+    clearInterval(_cdInterval);
+    if(_cdSecs!==null){ _cdInterval=setInterval(()=>{ if(_cdSecs>0){_cdSecs--;} renderCountdown(); },1000); }
+  }catch(e){}
+}
+
+function renderCountdown(){
+  const pill=document.getElementById('countdownPill');
+  if(_cdSecs===null){ pill.textContent=''; pill.className='pill'; return; }
+  const m=Math.floor(_cdSecs/60), s=_cdSecs%60;
+  pill.textContent=`next: ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  pill.className='pill '+ (_cdSecs<120 ? 'on' : '');
+}
+
+async function triggerNow(){
+  const btn=document.getElementById('triggerBtn');
+  btn.textContent='⏱ Running…'; btn.disabled=true;
+  await fetch('/api/bot/trigger',{method:'POST'});
+  toast('Fetch triggered — running after current countdown tick');
+  // re-enable after 90s (typical cycle length) and refresh countdown
+  setTimeout(()=>{ btn.textContent='⚡ Fetch now'; btn.disabled=false; fetchCountdown(); }, 90000);
+  setTimeout(fetchCountdown, 5000);
+}
+
 let logKind='activity';
 function setLog(k){ logKind=k;
   document.getElementById('tabActivity').className = k==='activity'?'btn-y':'btn-d';
@@ -989,9 +1055,9 @@ async function unseeSelected(){
   else toast('Failed: '+r.msg);
 }
 
-wireSearch('xe'); wireSearch('spito'); load(); loadProps();
+wireSearch('xe'); wireSearch('spito'); load(); loadProps(); fetchCountdown();
 setInterval(botStatus,5000); setInterval(refreshLog,3000); refreshLog();
-setInterval(loadProps,60000);
+setInterval(loadProps,60000); setInterval(fetchCountdown,30000);
 </script>
 </body>
 </html>
