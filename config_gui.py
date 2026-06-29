@@ -452,7 +452,6 @@ def api_bot_restart():
 def api_logs():
     kind = request.args.get("kind", "activity")
     if kind == "error":
-        # newest dated error file, if any
         logdir = os.path.join(BASE_DIR, "data", "logs")
         errs = sorted([f for f in os.listdir(logdir) if f.startswith("errors_")]) \
             if os.path.isdir(logdir) else []
@@ -460,6 +459,23 @@ def api_logs():
         return jsonify({"text": tail(path) if path else "(no errors logged 🎉)"})
     return jsonify({"text": tail(os.path.join(BASE_DIR, "data", "activity.log"))
                     or "(no activity yet — start the bot)"})
+
+
+@app.route("/api/logs/clear", methods=["POST"])
+def api_logs_clear():
+    kind = request.args.get("kind", "activity")
+    try:
+        if kind == "error":
+            logdir = os.path.join(BASE_DIR, "data", "logs")
+            if os.path.isdir(logdir):
+                for f in os.listdir(logdir):
+                    if f.startswith("errors_"):
+                        open(os.path.join(logdir, f), "w").close()
+        else:
+            open(os.path.join(BASE_DIR, "data", "activity.log"), "w").close()
+        return jsonify({"ok": True})
+    except Exception as e:
+        return jsonify({"ok": False, "msg": str(e)})
 
 
 @app.route("/api/fresh-start", methods=["POST"])
@@ -779,6 +795,8 @@ PAGE = r"""
       <button id="tabActivity" class="btn-y" onclick="setLog('activity')">Activity</button>
       <button id="tabError" class="btn-d" onclick="setLog('error')">Errors</button>
       <div style="flex:1"></div>
+      <button class="btn-d" onclick="refreshLog()" title="Refresh log">↻ Refresh</button>
+      <button class="btn-d" onclick="clearLog()" title="Clear current log">🗑 Clear</button>
       <label style="margin:0;display:flex;align-items:center;gap:6px;cursor:pointer">
         <input type="checkbox" id="autoscroll" checked style="width:auto"> auto-scroll</label>
     </div>
@@ -896,6 +914,11 @@ async function refreshLog(){
     const el=document.getElementById('console'); const atBottom=document.getElementById('autoscroll').checked;
     el.textContent=r.text||''; if(atBottom) el.scrollTop=el.scrollHeight;
   }catch(e){}
+}
+async function clearLog(){
+  if(!confirm('Clear the '+logKind+' log?')) return;
+  await fetch('/api/logs/clear?kind='+logKind,{method:'POST'});
+  refreshLog(); toast('Log cleared');
 }
 
 // ── Properties tab ────────────────────────────────────────────────────────

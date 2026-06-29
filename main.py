@@ -85,51 +85,46 @@ _JS_FETCH = """async (u) => {
     return await r.json();
 }"""
 
+_CHROMIUM_ARGS = ["--no-sandbox", "--disable-blink-features=AutomationControlled"]
 
-def _browser_session(warmup_url, warmup_ms=4000):
-    """Open a headless Chromium context warmed up on warmup_url.
-    Returns (playwright, browser, page) — caller must close browser."""
-    from playwright.sync_api import sync_playwright
-    pw = sync_playwright().start()
-    browser = pw.chromium.launch(
-        headless=True,
-        args=["--no-sandbox", "--disable-blink-features=AutomationControlled"],
-    )
+
+def _new_browser(pw):
+    browser = pw.chromium.launch(headless=True, args=_CHROMIUM_ARGS)
     ctx = browser.new_context(user_agent=BROWSER_UA, locale="en-US",
-                               viewport={"width": 1366, "height": 768})
-    page = ctx.new_page()
-    page.goto(warmup_url, wait_until="networkidle", timeout=60000)
-    page.wait_for_timeout(warmup_ms)
-    return pw, browser, page
+                              viewport={"width": 1366, "height": 768})
+    return browser, ctx.new_page()
 
 
 def fetch_xe_via_browser(base_params):
-    """Fetch ALL pages of XE results through a headless browser (free, no ScraperAPI).
-    Returns list of all result objects across pages, or raises on failure."""
-    pw, browser, page = _browser_session("https://www.xe.gr/property/")
-    try:
-        all_results, pg = [], 1
-        while True:
-            data = page.evaluate(_JS_FETCH, f"{base_params}&page={pg}")
-            if not data or "results" not in data:
-                raise RuntimeError(f"XE browser: no JSON on page {pg}")
-            page_results = data["results"]
-            all_results.extend(page_results)
-            total_pages = data.get("paging", {}).get("total_pages", 1)
-            event(f"XE page {pg}/{total_pages} — {len(page_results)} results (browser)")
-            if pg >= total_pages:
-                break
-            pg += 1
-            time.sleep(2)
-        return all_results
-    finally:
-        browser.close()
-        pw.stop()
+    """Fetch ALL pages of XE via headless browser. Uses context manager so
+    playwright is always cleaned up even if an exception occurs mid-flight."""
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as pw:
+        browser, page = _new_browser(pw)
+        try:
+            page.goto("https://www.xe.gr/property/",
+                      wait_until="domcontentloaded", timeout=60000)
+            page.wait_for_timeout(4000)
+            all_results, pg = [], 1
+            while True:
+                data = page.evaluate(_JS_FETCH, f"{base_params}&page={pg}")
+                if not data or "results" not in data:
+                    raise RuntimeError(f"XE browser: no JSON on page {pg}")
+                page_results = data["results"]
+                all_results.extend(page_results)
+                total_pages = data.get("paging", {}).get("total_pages", 1)
+                event(f"XE page {pg}/{total_pages} — {len(page_results)} results (browser)")
+                if pg >= total_pages:
+                    break
+                pg += 1
+                time.sleep(2)
+            return all_results
+        finally:
+            browser.close()
 
 
 def fetch_xe_via_scraperapi(base_params):
-    """Fetch ALL pages of XE results through ScraperAPI (fallback).
-    Returns list of all result objects across pages, or raises on failure."""
+    """Fetch ALL pages of XE via ScraperAPI (fallback)."""
     all_results, pg = [], 1
     while True:
         url = build_scraperapi_url(f"{base_params}&page={pg}")
@@ -149,31 +144,33 @@ def fetch_xe_via_scraperapi(base_params):
 
 
 def fetch_spitogatos_via_browser(api_url):
-    """Fetch Spitogatos search results through a headless browser (free, no ScraperAPI).
-    Warms up on the home page + search page to build a convincing session.
-    Retries once before raising. Returns parsed JSON dict, or raises on failure."""
+    """Fetch Spitogatos via headless browser. Context manager guarantees cleanup
+    so a timeout can never leave an orphaned asyncio loop. Retries once."""
+    from playwright.sync_api import sync_playwright
     for attempt in range(1, 3):
-        pw, browser, page = _browser_session("https://www.spitogatos.gr/en", warmup_ms=4000)
-        try:
-            # visit the search results page too — deeper session = less suspicious
-            page.goto("https://www.spitogatos.gr/en/search/results",
-                      wait_until="domcontentloaded", timeout=30000)
-            page.wait_for_timeout(2000)
-            data = page.evaluate(_JS_FETCH, api_url)
-            if data and "data" in data:
-                return data
-            event(f"Spitogatos browser attempt {attempt}/2: challenge not cleared, retrying...",
-                  Fore.LIGHTYELLOW_EX)
-        except Exception as e:
-            if attempt == 2:
-                raise
-            event(f"Spitogatos browser attempt {attempt}/2 error: {e}, retrying...",
-                  Fore.LIGHTYELLOW_EX)
-        finally:
-            browser.close()
-            pw.stop()
+        with sync_playwright() as pw:
+            browser, page = _new_browser(pw)
+            try:
+                page.goto("https://www.spitogatos.gr/en",
+                          wait_until="domcontentloaded", timeout=60000)
+                page.wait_for_timeout(4000)
+                page.goto("https://www.spitogatos.gr/en/search/results",
+                          wait_until="domcontentloaded", timeout=30000)
+                page.wait_for_timeout(2000)
+                data = page.evaluate(_JS_FETCH, api_url)
+                if data and "data" in data:
+                    return data
+                event(f"Spitogatos browser attempt {attempt}/2: challenge not cleared",
+                      Fore.LIGHTYELLOW_EX)
+            except Exception as e:
+                if attempt == 2:
+                    raise
+                event(f"Spitogatos browser attempt {attempt}/2 error: {e}",
+                      Fore.LIGHTYELLOW_EX)
+            finally:
+                browser.close()
         time.sleep(5)
-    raise RuntimeError("Spitogatos browser: anti-bot challenge not cleared after 2 attempts")
+    raise RuntimeError("Spitogatos browser: challenge not cleared after 2 attempts")
 
 
 def fetch_spitogatos_via_scraperapi(api_url):
