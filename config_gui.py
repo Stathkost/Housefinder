@@ -18,7 +18,7 @@ import signal
 import platform
 import subprocess
 import requests
-from flask import Flask, request, jsonify, render_template_string
+from flask import Flask, request, jsonify, render_template_string, send_from_directory
 
 BASE_DIR = os.path.dirname(os.path.abspath(
     sys.executable if getattr(sys, "frozen", False) else __file__
@@ -370,6 +370,17 @@ def tail(path, lines=200):
 # Routes
 # --------------------------------------------------------------------------
 
+@app.route("/assets/<path:filename>")
+def serve_asset(filename):
+    return send_from_directory(os.path.join(BASE_DIR, "assets"), filename)
+
+
+@app.route("/favicon.ico")
+def favicon():
+    return send_from_directory(os.path.join(BASE_DIR, "assets"), "favicon.ico",
+                               mimetype="image/x-icon")
+
+
 @app.route("/")
 def index():
     return render_template_string(PAGE)
@@ -466,7 +477,8 @@ PAGE = r"""
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Housefinder</title>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/logo-192.png">
 <style>
   :root { --y:#FFD43B; --bg:#0f1419; --card:#1b222b; --line:#2c3744; --txt:#e6edf3; --mut:#8b98a5; }
   * { box-sizing:border-box; }
@@ -507,8 +519,8 @@ PAGE = r"""
 </head>
 <body>
 <header>
-  <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
-       width="36" height="36" style="border-radius:8px;flex-shrink:0">
+  <img src="/assets/logo-192.png" width="36" height="36"
+       style="border-radius:8px;flex-shrink:0;display:block">
   <h1><span>Housefinder</span> Config</h1>
   <span id="botPill" class="pill">bot: …</span>
   <span id="bootPill" class="pill" title="Whether the bot auto-starts after reboot"></span>
@@ -671,10 +683,10 @@ PAGE = r"""
 </main>
 <div id="toast" class="toast"></div>
 <footer style="text-align:center;padding:22px 12px 32px;color:var(--mut);font-size:12px;line-height:1.8">
-  <img src="https://raw.githubusercontent.com/Stathkost/Housefinder/main/assets/logo.png"
-       width="36" height="36" style="border-radius:8px;vertical-align:middle;margin-right:8px">
+  <img src="/assets/logo-192.png" width="36" height="36"
+       style="border-radius:8px;vertical-align:middle;margin-right:8px;display:inline-block">
   <b style="color:var(--txt)">Housefinder</b>
-  &nbsp;·&nbsp; Built with 🤍 by
+  &nbsp;·&nbsp; Designed &amp; developed by
   <a href="https://github.com/stathis1998" target="_blank" style="color:var(--y);text-decoration:none">Stathis Stathopoulos</a>
   &amp;
   <a href="https://github.com/Stathkost" target="_blank" style="color:var(--y);text-decoration:none">Konstantinos Stathopoulos</a>
